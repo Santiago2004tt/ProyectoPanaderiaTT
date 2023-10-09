@@ -16,6 +16,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.sun.mail</groupId> <!-- Usa com.sun.mail para Jakarta Mail -->
+            <artifactId>jakarta.mail</artifactId>
+            <version>1.6.7</version> <!-- Cambia la versión a la 1.6.7 o una versión compatible -->
+        </dependency>
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>20.0.1</version>

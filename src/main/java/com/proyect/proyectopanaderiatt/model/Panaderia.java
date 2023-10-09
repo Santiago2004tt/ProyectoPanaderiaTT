@@ -407,14 +407,14 @@ public class Panaderia {
 
     /**
      * verifica si la contrasena se puede utilizar, cumple con los requisitos
-     * @param contraseña
+     * @param contrasena
      * @return
      */
-    public boolean verificarContraseña(String contraseña) {
+    public boolean verificarContrasena(String contrasena) {
         // La expresión regular para verificar la contraseña
-        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!.-])(?=\\S+$).{8,}$";
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!.,_/~'()*:;<>?])(?=\\S+$).{8,}$";
         Pattern pattern = Pattern.compile(regex); //patron de busqueda
-        Matcher matcher = pattern.matcher(contraseña); //compara el patron de busqueda con la contraseña
+        Matcher matcher = pattern.matcher(contrasena); //compara el patron de busqueda con la contraseña
         //si cumple el matcher guarda un true, si no guarda un false
         return matcher.matches();
     }

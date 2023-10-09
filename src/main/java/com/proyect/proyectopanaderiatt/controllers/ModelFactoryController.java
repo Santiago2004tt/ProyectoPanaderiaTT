@@ -2,11 +2,7 @@ package com.proyect.proyectopanaderiatt.controllers;
 import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
 import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
 import com.proyect.proyectopanaderiatt.model.Cliente;
-import com.proyect.proyectopanaderiatt.model.Cuenta;
 import com.proyect.proyectopanaderiatt.model.Panaderia;
-
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public class ModelFactoryController {
 
@@ -32,7 +28,7 @@ public class ModelFactoryController {
     }
 
     public boolean verificarContrasenaRequisitos(String contrasena) {
-        return panaderia.verificarContraseña(contrasena);
+        return panaderia.verificarContrasena(contrasena);
     }
 
     public void crearCliente(Cliente cliente) throws ClienteException {
@@ -56,9 +52,16 @@ public class ModelFactoryController {
 
     private void inicializarDatos() {
         inicializarPanaderia();
+        inicializarClientes();
+    }
+
+    private void inicializarClientes() {
+        Cliente cliente = new Cliente();
+
     }
 
     private void inicializarPanaderia() {
+        panaderia = new Panaderia();
         panaderia.setNombre("PanaderiaTT");
         panaderia.setCalificacion(4);
         panaderia.setId("pntt01");

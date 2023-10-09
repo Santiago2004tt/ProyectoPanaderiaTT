@@ -1,6 +1,7 @@
 package com.proyect.proyectopanaderiatt.controllers;
 import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
 import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
+import com.proyect.proyectopanaderiatt.Persistencia.Persistencia;
 import com.proyect.proyectopanaderiatt.model.Cliente;
 import com.proyect.proyectopanaderiatt.model.Panaderia;
 
@@ -44,7 +45,7 @@ public class ModelFactoryController {
     }
 
     public ModelFactoryController() {
-
+        panaderia = Persistencia.cargarRecursoXML();
         if(panaderia == null) {
             inicializarDatos();
         }
@@ -52,12 +53,6 @@ public class ModelFactoryController {
 
     private void inicializarDatos() {
         inicializarPanaderia();
-        inicializarClientes();
-    }
-
-    private void inicializarClientes() {
-        Cliente cliente = new Cliente();
-
     }
 
     private void inicializarPanaderia() {

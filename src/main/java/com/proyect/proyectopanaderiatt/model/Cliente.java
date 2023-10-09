@@ -1,6 +1,8 @@
 package com.proyect.proyectopanaderiatt.model;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Cliente extends Persona{
 
@@ -11,7 +13,7 @@ public class Cliente extends Persona{
 
     public Cliente(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String identificacion, Cuenta cuenta, double nivelLealtad, String ocupacion) {
         super(nombre, apellido, cedula, telefono, email, direccion, identificacion, cuenta);
-        this.nivelLealtad = nivelLealtad;
+        this.nivelLealtad = 0;
         this.ocupacion = ocupacion;
     }
 
@@ -51,4 +53,28 @@ public class Cliente extends Persona{
     public void setListaPagos(ArrayList<Pago> listaPagos) {
         this.listaPagos = listaPagos;
     }
+
+    public boolean verificarUsuario(String usuario) {
+        if(!getCuenta().verificarUsuario(usuario)){
+            return false;
+        }
+        return true;
+    }
+
+    //Crud de cliente
+
+    /**
+     * método para crear una cuenta y asignarla al cliente
+     * @param cuenta
+     * @return
+     */
+    public boolean crearCuenta(Cuenta cuenta){
+        if(getCuenta() == null){
+            setCuenta(cuenta);
+            return true;
+        }
+        return false;
+    }
+
+
 }

@@ -3,13 +3,13 @@ package com.proyect.proyectopanaderiatt.model;
 import java.util.ArrayList;
 
 public class Empleado extends Persona {
-    private String cargo;
+    private Cargo cargo;
     private String fechaContrato;
     private String referencia;
     private String horaTrabajo;
     private ArrayList<Pago> listaPagos;
 
-    public Empleado(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String identificacion, Cuenta cuenta, String cargo, String fechaContrato, String referencia, String horaTrabajo) {
+    public Empleado(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String identificacion, Cuenta cuenta, Cargo cargo, String fechaContrato, String referencia, String horaTrabajo) {
         super(nombre, apellido, cedula, telefono, email, direccion, identificacion, cuenta);
         this.cargo = cargo;
         this.fechaContrato = fechaContrato;
@@ -22,11 +22,11 @@ public class Empleado extends Persona {
         listaPagos = new ArrayList<>();
     }
 
-    public String getCargo() {
+    public Cargo getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
 

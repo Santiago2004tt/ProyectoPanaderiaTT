@@ -60,4 +60,11 @@ public class Cuenta {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
+
+    public boolean verificarUsuario(String usuario) {
+        if (getUsuario().equals(usuario)){
+            return true;
+        }
+        return false;
+    }
 }

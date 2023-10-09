@@ -11,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 
 public class CrearCuentaController {
 
+    Application application;
+    ModelFactoryController modelFactoryController;
     @FXML
     private Button btnIniciarSesion;
 
@@ -65,6 +67,12 @@ public class CrearCuentaController {
         }
     }
 
+    @FXML
+    void initialize() {
+        this.modelFactoryController = ModelFactoryController.getInstance();
+    }
+
     public void setApplication(Application application) {
+        this.application = application;
     }
 }

@@ -28,7 +28,7 @@
             <Label id="text" text="Usuario" />
          </children>
       </GridPane>
-      <Button id="buttonNormal" fx:id="btnIniciarSesion" layoutX="269.0" layoutY="296.0" mnemonicParsing="false" onAction="#inicisrSesionAction" prefHeight="44.0" prefWidth="112.0" text="Iniciar Sesión" textAlignment="CENTER" />
+      <Button id="buttonNormal" fx:id="btnIniciarSesion" layoutX="269.0" layoutY="296.0" mnemonicParsing="false" onAction="#iniciarSesionAction" prefHeight="44.0" prefWidth="112.0" text="Iniciar Sesión" textAlignment="CENTER" />
       <Button id="buttonNormal" fx:id="btnRecuperarContrasenia" layoutX="144.0" layoutY="296.0" mnemonicParsing="false" onAction="#recuperarContraseniaAction" prefHeight="44.0" prefWidth="112.0" text="Recuperar contraseña" textAlignment="CENTER" wrapText="true" />
       <Button id="buttonNormal" fx:id="btnCrearCuenta" layoutX="207.0" layoutY="349.0" mnemonicParsing="false" onAction="#crearCuentaAction" prefHeight="44.0" prefWidth="112.0" text="Crear Cuenta" textAlignment="CENTER" wrapText="true" />
    </children>

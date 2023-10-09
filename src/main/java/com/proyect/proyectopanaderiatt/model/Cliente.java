@@ -54,9 +54,14 @@ public class Cliente extends Persona{
         this.listaPagos = listaPagos;
     }
 
+    /**
+     * metodo que verifica si existe el usuario o no
+     * @param usuario
+     * @return
+     */
     public boolean verificarUsuario(String usuario) {
         if(!getCuenta().verificarUsuario(usuario)){
-            return false;
+            return false;//si lo encuentra retorna true
         }
         return true;
     }
@@ -77,4 +82,10 @@ public class Cliente extends Persona{
     }
 
 
+    public boolean veririficarUsuarioContrasena(String usuario, String contrasena) {
+        if(getCuenta().verificarUsuarioContrasena(usuario, contrasena)){
+            return true;
+        }
+        return false;
+    }
 }

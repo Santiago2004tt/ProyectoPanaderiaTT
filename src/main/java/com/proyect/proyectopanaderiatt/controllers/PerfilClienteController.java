@@ -1,5 +1,7 @@
 package com.proyect.proyectopanaderiatt.controllers;
 
+import com.proyect.proyectopanaderiatt.Application.Application;
+import com.proyect.proyectopanaderiatt.model.Cliente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -49,4 +51,6 @@ public class PerfilClienteController {
 
     }
 
+    public void setApplication(Application application, Cliente cliente) {
+    }
 }

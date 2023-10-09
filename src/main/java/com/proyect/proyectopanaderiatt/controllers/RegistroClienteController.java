@@ -1,5 +1,6 @@
 package com.proyect.proyectopanaderiatt.controllers;
 
+import com.proyect.proyectopanaderiatt.Application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +11,8 @@ import javafx.scene.input.KeyEvent;
 
 public class RegistroClienteController {
 
+    Application application;
+    ModelFactoryController modelFactoryController;
     @FXML
     private Button btnIniciarSesion;
 
@@ -105,4 +108,11 @@ public class RegistroClienteController {
         }
     }
 
+    @FXML
+    void initialize() {
+        this.modelFactoryController = ModelFactoryController.getInstance();
+    }
+
+    public void setApplication(Application application) {
+    }
 }

@@ -1,6 +1,10 @@
 package com.proyect.proyectopanaderiatt.controllers;
 
 import com.proyect.proyectopanaderiatt.Application.Application;
+import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
+import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
+import com.proyect.proyectopanaderiatt.model.Cliente;
+import com.proyect.proyectopanaderiatt.util.MensajeUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 public class IniciarSecionController {
 
     Application application;
+    ModelFactoryController modelFactoryController;
     @FXML
     private Button btnCrearCuenta;
 
@@ -36,12 +41,41 @@ public class IniciarSecionController {
 
     @FXML
     void crearCuentaAction(ActionEvent event) {
-
+        application.mostrarCrearCuenta();
     }
 
     @FXML
-    void inicisrSesionAction(ActionEvent event) {
+    void iniciarSesionAction(ActionEvent event) {
+        iniciarSesion();
+    }
 
+    private void iniciarSesion() {
+        String usuario = tfUsuario.getText();
+        String contrasena = pfContrasenia.getText();
+        String cedula = "";
+        if(verificarDatos(usuario, contrasena)){
+            try {
+                cedula = modelFactoryController.verificarUsuarioContrasena(usuario, contrasena);
+                Cliente cliente = modelFactoryController.buscarCliente(cedula);
+                application.mostrarPerfil(cliente);
+            } catch (CuentaException e){
+                MensajeUtil.mensajeAlerta("Error", e.getMessage());
+            }catch (ClienteException e){
+                MensajeUtil.mensajeAlerta("Error", e.getMessage());
+            }
+        }else {
+            MensajeUtil.mensajeAlerta("Error","Rellena los campos por favor");
+        }
+    }
+
+    private boolean verificarDatos(String usuario, String contrasena) {
+        if(usuario.equals("")){
+            return false;
+        }
+        if(contrasena.equals("")){
+            return false;
+        }
+        return true;
     }
 
     @FXML
@@ -54,6 +88,11 @@ public class IniciarSecionController {
         if (event.getCode() == KeyCode.ENTER) {
             pfContrasenia.requestFocus();
         }
+    }
+
+    @FXML
+    void initialize() {
+        this.modelFactoryController = ModelFactoryController.getInstance();
     }
 
     public void setApplication(Application application) {

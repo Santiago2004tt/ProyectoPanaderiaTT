@@ -61,8 +61,20 @@ public class Cuenta {
         this.persona = persona;
     }
 
+    /**
+     * verifica si el usuario existe o no
+     * @param usuario
+     * @return
+     */
     public boolean verificarUsuario(String usuario) {
         if (getUsuario().equals(usuario)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean verificarUsuarioContrasena(String usuario, String contrasena) {
+        if(getUsuario().equals(usuario) && getContrasena().equals(contrasena)){
             return true;
         }
         return false;

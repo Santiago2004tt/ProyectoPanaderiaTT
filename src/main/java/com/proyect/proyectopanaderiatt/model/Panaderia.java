@@ -1,6 +1,7 @@
 package com.proyect.proyectopanaderiatt.model;
 
 import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
+import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
 import com.proyect.proyectopanaderiatt.Exceptions.EmpleadoException;
 import com.proyect.proyectopanaderiatt.Exceptions.PedidoException;
 
@@ -417,4 +418,20 @@ public class Panaderia {
         return matcher.matches();
     }
 
+    public String verificarUsuarioContrasena(String usuario, String contrasena)throws CuentaException {
+        String cedula = "";
+        if(verificarUsuarioClienteUnico(usuario)){
+            throw new CuentaException("La cuenta no a sido encontrada");
+        }else {
+            System.out.println("funciona");
+            Iterator<Cliente> iterator = getListaClientes().iterator();
+            while (iterator.hasNext()){
+                Cliente cliente = iterator.next();
+                if(cliente.veririficarUsuarioContrasena(usuario, contrasena)){
+                    return cliente.getCedula();
+                }
+            }
+        }
+        return cedula;
+    }
 }

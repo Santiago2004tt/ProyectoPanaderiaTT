@@ -1,7 +1,7 @@
 package com.proyect.proyectopanaderiatt.Application;
 
-import com.proyect.proyectopanaderiatt.controllers.CrearCuentaController;
-import com.proyect.proyectopanaderiatt.controllers.IniciarSecionController;
+import com.proyect.proyectopanaderiatt.controllers.*;
+import com.proyect.proyectopanaderiatt.model.Cliente;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -18,7 +18,7 @@ public class Application extends javafx.application.Application {
         mostrarVentanaLogin();
     }
 
-    private void mostrarVentanaLogin() {
+    public void mostrarVentanaLogin() {
         try {
             stage.close();
             stage = new Stage();
@@ -28,8 +28,8 @@ public class Application extends javafx.application.Application {
             loader.setLocation(Application.class.getResource("/views/iniciar-sesion.fxml"));
             AnchorPane rootLayout = loader.load();
             //Carga los controladores
-            //CrearCuentaController controller = loader.getController();//Obtenemos el controlador
-            //controller.setApplication(this);
+            IniciarSecionController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
             Scene scene = new Scene(rootLayout);//Carga la escena Principal. En este caso carga el anchor-pane
             // de cambiar de ventana con escape
             stage.setScene(scene);//Al escenario principal se le dice que cargue la escena
@@ -38,6 +38,74 @@ public class Application extends javafx.application.Application {
             throw new RuntimeException(e);
         }
     }
+
+    public void mostrarRegistroCliente(){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/registro-cliente.fxml"));
+            AnchorPane rootLayout = loader.load();
+            RegistroClienteController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarCrearCuenta(){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/registro-cliente.fxml"));
+            AnchorPane rootLayout = loader.load();
+            RegistroClienteController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarPerfil(Cliente cliente){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/perfil-cliente.fxml"));
+            AnchorPane rootLayout = loader.load();
+            PerfilClienteController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void mostrarMenuDisenio(Cliente cliente){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/menu-disenio.fxml"));
+            AnchorPane rootLayout = loader.load();
+            MenuDisenioController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public static void main(String[] args) {
         launch();

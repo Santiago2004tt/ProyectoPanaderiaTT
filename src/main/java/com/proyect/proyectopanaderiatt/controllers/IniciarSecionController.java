@@ -11,6 +11,9 @@ import javafx.scene.input.KeyEvent;
 public class IniciarSecionController {
 
     @FXML
+    private Button btnCrearCuenta;
+
+    @FXML
     private Button btnIniciarSesion;
 
     @FXML
@@ -27,6 +30,11 @@ public class IniciarSecionController {
         if (event.getCode() == KeyCode.ENTER) {
             btnIniciarSesion.fire();
         }
+    }
+
+    @FXML
+    void crearCuentaAction(ActionEvent event) {
+
     }
 
     @FXML

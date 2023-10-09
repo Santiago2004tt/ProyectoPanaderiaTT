@@ -39,7 +39,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarRegistroCliente(){
+    public void mostrarRegistroCliente(Cliente cliente){
         try {
             stage.close();
             stage = new Stage();
@@ -47,7 +47,7 @@ public class Application extends javafx.application.Application {
             loader.setLocation(Application.class.getResource("/views/registro-cliente.fxml"));
             AnchorPane rootLayout = loader.load();
             RegistroClienteController controller = loader.getController();//Obtenemos el controlador
-            controller.setApplication(this);
+            controller.setApplication(this, cliente);
             Scene scene = new Scene(rootLayout);
             stage.setScene(scene);
             stage.show();
@@ -56,15 +56,15 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarCrearCuenta(){
+    public void mostrarCrearCuenta(Cliente cliente){
         try {
             stage.close();
             stage = new Stage();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Application.class.getResource("/views/registro-cliente.fxml"));
+            loader.setLocation(Application.class.getResource("/views/crear-cuenta.fxml"));
             AnchorPane rootLayout = loader.load();
-            RegistroClienteController controller = loader.getController();//Obtenemos el controlador
-            controller.setApplication(this);
+            CrearCuentaController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
             Scene scene = new Scene(rootLayout);
             stage.setScene(scene);
             stage.show();

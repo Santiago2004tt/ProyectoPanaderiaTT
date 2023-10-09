@@ -135,7 +135,7 @@ public class Panaderia {
      * @param cedula
      * @return
      */
-    private boolean verificarCliente(String cedula) {
+    public boolean verificarCliente(String cedula) {
         Iterator<Cliente> iterator = getListaClientes().iterator();
         while (iterator.hasNext()){
             Cliente cliente = iterator.next();
@@ -157,7 +157,7 @@ public class Panaderia {
      * @return
      * @throws ClienteException
      */
-    public boolean actualizarCliente(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String ocupacion) throws ClienteException{
+    public boolean actualizarCliente(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String ocupacion, String foto) throws ClienteException{
 
         if(verificarCliente(cedula)){
             throw new ClienteException("El cliente no se encuentra registrado");
@@ -169,6 +169,7 @@ public class Panaderia {
             cliente.setEmail(email);
             cliente.setDireccion(direccion);
             cliente.setOcupacion(ocupacion);
+            cliente.setFoto(foto);
             return true;
         }
 
@@ -411,13 +412,20 @@ public class Panaderia {
      */
     public boolean verificarContraseña(String contraseña) {
         // La expresión regular para verificar la contraseña
-        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!.-])(?=\\S+$).{8,}$";
         Pattern pattern = Pattern.compile(regex); //patron de busqueda
         Matcher matcher = pattern.matcher(contraseña); //compara el patron de busqueda con la contraseña
         //si cumple el matcher guarda un true, si no guarda un false
         return matcher.matches();
     }
 
+    /**
+     * metodo que verifica si la cuenta existe y concuerda el usuario con la contraseña
+     * @param usuario
+     * @param contrasena
+     * @return
+     * @throws CuentaException
+     */
     public String verificarUsuarioContrasena(String usuario, String contrasena)throws CuentaException {
         String cedula = "";
         if(verificarUsuarioClienteUnico(usuario)){

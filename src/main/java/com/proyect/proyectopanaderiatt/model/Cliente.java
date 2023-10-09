@@ -8,18 +8,28 @@ public class Cliente extends Persona{
 
     private double nivelLealtad;
     private String ocupacion;
+    private String foto;
     private ArrayList<Pedido> listaPedidos;
     private ArrayList<Pago> listaPagos;
 
-    public Cliente(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String identificacion, Cuenta cuenta, double nivelLealtad, String ocupacion) {
+    public Cliente(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String identificacion, Cuenta cuenta, double nivelLealtad, String ocupacion, String foto) {
         super(nombre, apellido, cedula, telefono, email, direccion, identificacion, cuenta);
         this.nivelLealtad = 0;
         this.ocupacion = ocupacion;
+        this.foto = foto;
     }
 
     public Cliente() {
         listaPedidos = new ArrayList<>();
         listaPagos = new ArrayList<>();
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public double getNivelLealtad() {

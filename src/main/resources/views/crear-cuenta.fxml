@@ -31,7 +31,7 @@
             <Label id="text" text="Confiramar contraseña" wrapText="true" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button id="button" fx:id="btnRegistrarse" layoutX="231.0" layoutY="307.0" mnemonicParsing="false" onAction="#registrerseAction" text="Registrarse" />
+      <Button id="button" fx:id="btnRegistrarse" layoutX="231.0" layoutY="307.0" mnemonicParsing="false" onAction="#registrarseAction" text="Registrarse" />
       <Button id="button" fx:id="btnIniciarSesion" layoutX="87.0" layoutY="307.0" mnemonicParsing="false" onAction="#iniciarSesionAction" text="Iniciar Sesión" />
       <Button id="buttonBack" fx:id="btnRegresar" layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#regresarAction" prefWidth="80.0" text="Regresar" />
    </children>

@@ -41,7 +41,7 @@ public class IniciarSecionController {
 
     @FXML
     void crearCuentaAction(ActionEvent event) {
-        application.mostrarCrearCuenta();
+        application.mostrarRegistroCliente(null);
     }
 
     @FXML

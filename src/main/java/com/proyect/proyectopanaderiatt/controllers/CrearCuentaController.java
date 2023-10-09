@@ -1,6 +1,10 @@
 package com.proyect.proyectopanaderiatt.controllers;
 
 import com.proyect.proyectopanaderiatt.Application.Application;
+import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
+import com.proyect.proyectopanaderiatt.model.Cliente;
+import com.proyect.proyectopanaderiatt.model.Cuenta;
+import com.proyect.proyectopanaderiatt.util.MensajeUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,10 +13,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.time.LocalDate;
+
 public class CrearCuentaController {
 
     Application application;
     ModelFactoryController modelFactoryController;
+    Cliente cliente;
     @FXML
     private Button btnIniciarSesion;
 
@@ -47,17 +54,63 @@ public class CrearCuentaController {
 
     @FXML
     void iniciarSesionAction(ActionEvent event) {
-
+        application.mostrarVentanaLogin();
     }
 
     @FXML
-    void registrerseAction(ActionEvent event) {
+    void registrarseAction(ActionEvent event) {
+        registrarse();
+    }
 
+    private void registrarse() {
+        String usuario = tfUsuario.getText();
+        String contrasena = pfContrasenia.getText();
+        String contrasenaRep = pfContrasenia.getText();
+        if(verificarEspacio(usuario) && verificarRepetido(contrasena, contrasenaRep)){
+            if(modelFactoryController.verificarUsuarioUnico(usuario)){
+                if(modelFactoryController.verificarContrasenaRequisitos(contrasena)){
+                    try {
+                        Cuenta cuenta = new Cuenta();
+                        cuenta.setUsuario(usuario);
+                        cuenta.setContrasena(contrasena);
+                        cuenta.setPersona(cliente);
+                        cuenta.setFechaCreacion(String.valueOf(LocalDate.now()));
+                        modelFactoryController.crearCliente(cliente);
+                        cliente.crearCuenta(cuenta);
+                        application.mostrarVentanaLogin();
+                    }catch (ClienteException e){
+                        MensajeUtil.mensajeAlerta("Error", e.getMessage());
+                    }
+                }else {
+                    MensajeUtil.mensajeAlerta("Error", "La contraseña no cumple los requisitos");
+                }
+            }else {
+                MensajeUtil.mensajeAlerta("Error", "El usuario no es valido, coloca otro");
+            }
+        }
+    }
+
+    private boolean verificarRepetido(String contrasena, String contrasenaRep) {
+        if(contrasenaRep.equals(contrasena)){
+            return true;
+        }
+        MensajeUtil.mensajeAlerta("Error", "La contraseña no coincide");
+        return false;
+
+    }
+
+    private boolean verificarEspacio(String usuario) {
+        if(usuario.equals("")){
+            MensajeUtil.mensajeAlerta("Error", "El usuario no tiene");
+            return false;
+        }
+
+        return true;
     }
 
     @FXML
     void regresarAction(ActionEvent event) {
-
+        application.mostrarRegistroCliente(cliente);
     }
 
     @FXML
@@ -72,7 +125,8 @@ public class CrearCuentaController {
         this.modelFactoryController = ModelFactoryController.getInstance();
     }
 
-    public void setApplication(Application application) {
+    public void setApplication(Application application, Cliente cliente) {
         this.application = application;
+        this.cliente = cliente;
     }
 }

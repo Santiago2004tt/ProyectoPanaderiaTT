@@ -1,5 +1,6 @@
 package com.proyect.proyectopanaderiatt.controllers;
 
+import com.proyect.proyectopanaderiatt.Application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 
 public class IniciarSecionController {
 
+    Application application;
     @FXML
     private Button btnIniciarSesion;
 
@@ -46,4 +48,7 @@ public class IniciarSecionController {
         }
     }
 
+    public void setApplication(Application application) {
+        this.application = application;
+    }
 }

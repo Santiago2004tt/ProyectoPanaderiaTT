@@ -1,5 +1,6 @@
 package com.proyect.proyectopanaderiatt.controllers;
 
+import com.proyect.proyectopanaderiatt.Application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -64,4 +65,6 @@ public class CrearCuentaController {
         }
     }
 
+    public void setApplication(Application application) {
+    }
 }

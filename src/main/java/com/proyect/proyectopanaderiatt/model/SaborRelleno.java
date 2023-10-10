@@ -1,5 +1,5 @@
 package com.proyect.proyectopanaderiatt.model;
 
 public enum SaborRelleno {
-    SIN_RELLENO,CREMA_MANTEQUILLA, GANACHE, DULCE_LECHE
+    FRESA, MORA, AREQUIPE, FRUTOS_ROJOS, MILO, CHOCOLATE, TRES_LECHES
 }

@@ -1,5 +1,5 @@
 package com.proyect.proyectopanaderiatt.model;
 
 public enum SaborBizcocho {
-    Vainilla, Chocolate, Fresa, Limón, Zanahoria, Café, Red_Velvet, Naranja_Amapolas
+    MARIA_LUISA,TENTACION_DE_CHOCOLATE,REVELDE,TORTA_FRIA, ENVINADA
 }

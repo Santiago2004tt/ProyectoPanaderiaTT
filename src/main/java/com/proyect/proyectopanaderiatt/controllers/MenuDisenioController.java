@@ -2,6 +2,8 @@ package com.proyect.proyectopanaderiatt.controllers;
 
 import com.proyect.proyectopanaderiatt.Application.Application;
 import com.proyect.proyectopanaderiatt.model.*;
+import com.proyect.proyectopanaderiatt.util.BodyEmailUtil;
+import com.proyect.proyectopanaderiatt.util.MensajeUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -27,6 +29,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class MenuDisenioController {
@@ -85,7 +88,43 @@ public class MenuDisenioController {
     }
 
     private void aceptar() {
+        String email = cliente.getEmail();
+        if(verificar()){
+            if (email.isEmpty()) {
+                MensajeUtil.mensajeAlerta("Alerta", "EL campo email es requerido");
+                return;
+            }
+            if(!(email.contains("@") && email.contains(".") && !email.contains(" "))){
+                MensajeUtil.mensajeAlerta("Error", "El correo no es valido");
+                return;
+            }
+            String nombreCliente = cliente.getNombre() + " " + cliente.getApellido();
 
+
+            // Asegurarse de que el número tenga exactamente 4 dígitos
+           String mensaje = "El pedido se a realizado";
+
+            String cuerpo = BodyEmailUtil.emailRecuperarContrasenia(nombreCliente, mensaje);
+
+            if (modelFactoryController.enviarEmail(email, "Realizacion de pedido", cuerpo)) {
+                application.mostrarPerfil(cliente);
+            } else {
+                MensajeUtil.mensajeAlerta("Alerta", "Ocurrio un error al enviar el mensaje");
+            }
+        }
+    }
+
+    private boolean verificar() {
+        if(cbSaborRelleno.getValue() == null){
+            return false;
+        }
+        if(cbSaborBizcocho.getValue() == null){
+            return false;
+        }
+        if(cbTipoTorta.getValue() == null){
+            return false;
+        }
+        return true;
     }
 
     @FXML

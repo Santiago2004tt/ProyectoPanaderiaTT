@@ -104,7 +104,7 @@ public class MenuDisenioController {
             // Asegurarse de que el número tenga exactamente 4 dígitos
            String mensaje = "El pedido se a realizado";
 
-            String cuerpo = BodyEmailUtil.emailRecuperarContrasenia(nombreCliente, mensaje);
+            String cuerpo = BodyEmailUtil.emailPedido(nombreCliente, mensaje);
 
             if (modelFactoryController.enviarEmail(email, "Realizacion de pedido", cuerpo)) {
                 application.mostrarPerfil(cliente);

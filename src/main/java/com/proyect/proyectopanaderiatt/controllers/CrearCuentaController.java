@@ -4,6 +4,8 @@ import com.proyect.proyectopanaderiatt.Application.Application;
 import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
 import com.proyect.proyectopanaderiatt.model.Cliente;
 import com.proyect.proyectopanaderiatt.model.Cuenta;
+import com.proyect.proyectopanaderiatt.util.BodyEmailUtil;
+import com.proyect.proyectopanaderiatt.util.GEmailSenderUtil;
 import com.proyect.proyectopanaderiatt.util.MensajeUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,6 +79,8 @@ public class CrearCuentaController {
                         cuenta.setFechaCreacion(String.valueOf(LocalDate.now()));
                         cliente.crearCuenta(cuenta);
                         modelFactoryController.crearCliente(cliente);
+                        String cuerpo = BodyEmailUtil.creacionCuenta(cliente.getNombre() + " " + cliente.getApellido(), "PanaderíaTT");
+                        modelFactoryController.enviarEmail(cliente.getEmail(), "Bienvenido/a a la panaderíaTT", cuerpo);
                         application.mostrarVentanaLogin();
                     }catch (ClienteException e){
                         MensajeUtil.mensajeAlerta("Error", e.getMessage());

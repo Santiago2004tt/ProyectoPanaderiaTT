@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -15,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="584.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyect.proyectopanaderiatt.controllers.MenuDisenioController">
+<AnchorPane prefHeight="584.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyect.proyectopanaderiatt.controllers.MenuDisenioController">
    <children>
       <Label id="title" layoutX="268.0" layoutY="14.0" text="Diseño" />
       <TableView id="fondoTabla" fx:id="tblPisos" layoutX="293.0" layoutY="93.0" prefHeight="177.0" prefWidth="280.0">
@@ -31,7 +27,7 @@
       <ComboBox fx:id="cbSaborBizcocho" layoutX="35.0" layoutY="179.0" prefWidth="150.0" />
       <ComboBox fx:id="cbTipoTorta" layoutX="35.0" layoutY="117.0" prefWidth="150.0" />
       <ComboBox fx:id="cbSaborRelleno" layoutX="35.0" layoutY="250.0" prefWidth="150.0" />
-      <CheckBox id="text" fx:id="chbDescripcion" layoutX="300.0" layoutY="315.0" mnemonicParsing="false" text="Con Descripción" />
+      <CheckBox id="text" fx:id="chbDescripcion" layoutX="300.0" layoutY="315.0" mnemonicParsing="false" text="Con Decorado" />
       <Label id="text" layoutX="32.0" layoutY="317.0" text="Descripción" />
       <Label id="text" layoutX="35.0" layoutY="92.0" text="Tipo Torta" />
       <Label id="text" layoutX="35.0" layoutY="157.0" text="Sabor del bizcocho" />

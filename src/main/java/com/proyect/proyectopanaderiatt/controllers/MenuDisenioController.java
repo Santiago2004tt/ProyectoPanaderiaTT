@@ -75,7 +75,15 @@ public class MenuDisenioController {
     private TableView<Tamano> tblPisos;
 
 
-    private ObservableList<Tamano> tamanoData = FXCollections.observableArrayList(Tamano.values());
+    private ObservableList<Tamano> tamanoData = FXCollections.observableArrayList();
+
+    public ObservableList<Tamano> getTamanoData() {
+        for (Tamano tamano : Tamano.values()) {
+            tamano.setSeleccionado(false);
+        }
+        tamanoData.addAll(Tamano.values());
+        return tamanoData;
+    }
 
     public void setApplication(Application application, Cliente cliente) {
         this.application = application;
@@ -89,12 +97,12 @@ public class MenuDisenioController {
 
     private void aceptar() {
         String email = cliente.getEmail();
-        if(verificar()){
+        if (verificar()) {
             if (email.isEmpty()) {
                 MensajeUtil.mensajeAlerta("Alerta", "EL campo email es requerido");
                 return;
             }
-            if(!(email.contains("@") && email.contains(".") && !email.contains(" "))){
+            if (!(email.contains("@") && email.contains(".") && !email.contains(" "))) {
                 MensajeUtil.mensajeAlerta("Error", "El correo no es valido");
                 return;
             }
@@ -102,7 +110,7 @@ public class MenuDisenioController {
 
 
             // Asegurarse de que el número tenga exactamente 4 dígitos
-           String mensaje = "El pedido se a realizado";
+            String mensaje = "El pedido se a realizado";
 
             String cuerpo = BodyEmailUtil.emailPedido(nombreCliente, mensaje);
 
@@ -111,6 +119,8 @@ public class MenuDisenioController {
             } else {
                 MensajeUtil.mensajeAlerta("Alerta", "Ocurrio un error al enviar el mensaje");
             }
+        } else {
+            MensajeUtil.mensajeAlerta("Alerta", "Faltan datos por rellenar");
         }
     }
 
@@ -122,6 +132,9 @@ public class MenuDisenioController {
             return false;
         }
         if(cbTipoTorta.getValue() == null){
+            return false;
+        }
+        if(tomarSeleccionados().isEmpty()){
             return false;
         }
         return true;
@@ -140,10 +153,13 @@ public class MenuDisenioController {
     @FXML
     void initialize() {
         this.modelFactoryController = ModelFactoryController.getInstance();
+
         cbTipoTorta.getItems().setAll(TipoTorta.values());
         cbSaborBizcocho.getItems().setAll(SaborBizcocho.values());
         cbSaborRelleno.getItems().setAll(SaborRelleno.values());
-        tblPisos.setItems(tamanoData);
+
+        tblPisos.setItems(getTamanoData());
+
         colTamanio.setCellValueFactory(new PropertyValueFactory<>("valor"));
         colSeleccionar.setCellValueFactory(new PropertyValueFactory<>("seleccionado"));
         colSeleccionar.setCellFactory(new Callback<TableColumn<Tamano, Boolean>, TableCell<Tamano, Boolean>>() {
@@ -209,7 +225,6 @@ public class MenuDisenioController {
         for (Tamano tamano : lista) {
             if (tamano.isSeleccionado()) {
                 seleccionados.add(tamano);
-                System.out.println(tamano.getValor());
             }
         }
         return seleccionados;

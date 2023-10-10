@@ -1,12 +1,9 @@
 package com.proyect.proyectopanaderiatt.controllers;
+
 import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
 import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
 import com.proyect.proyectopanaderiatt.model.Cliente;
-import com.proyect.proyectopanaderiatt.model.Cuenta;
 import com.proyect.proyectopanaderiatt.model.Panaderia;
-
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public class ModelFactoryController {
 
@@ -37,6 +34,14 @@ public class ModelFactoryController {
 
     public void crearCliente(Cliente cliente) throws ClienteException {
         panaderia.crearCliente(cliente);
+    }
+
+    public Cliente verificarEmail(String email) {
+        return panaderia.verificarEmail(email);
+    }
+
+    public boolean cambiarContrasenia(String email, String contrasenia) {
+        return panaderia.cambiarContrasenia(email, contrasenia);
     }
 
     private static class SingletonHolder {

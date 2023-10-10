@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class GEmailSenderUtil {
 
-    public boolean sendEmail(String to, String from, String subject, String text) {
+    public static boolean sendEmail(String to, String from, String subject, String text) {
         boolean flag = false;
 
         //logic

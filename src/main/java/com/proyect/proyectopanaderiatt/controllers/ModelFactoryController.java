@@ -5,6 +5,9 @@ import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
 import com.proyect.proyectopanaderiatt.Persistencia.Persistencia;
 import com.proyect.proyectopanaderiatt.model.Cliente;
 import com.proyect.proyectopanaderiatt.model.Panaderia;
+import com.proyect.proyectopanaderiatt.util.GEmailSenderUtil;
+import com.proyect.proyectopanaderiatt.util.MensajeUtil;
+import javafx.application.Platform;
 
 public class ModelFactoryController {
 
@@ -12,6 +15,8 @@ public class ModelFactoryController {
      * atributos
      */
     private Panaderia panaderia;
+
+    private boolean hiloVivoEmail = false;
 
     public String verificarUsuarioContrasena(String usuario, String contrasena) throws CuentaException {
         return panaderia.verificarUsuarioContrasena(usuario, contrasena);
@@ -44,6 +49,19 @@ public class ModelFactoryController {
 
     public boolean cambiarContrasenia(String email, String contrasenia) {
         return panaderia.cambiarContrasenia(email, contrasenia);
+    }
+
+    public boolean enviarEmail(String email, String subject, String text) {
+        if (!hiloVivoEmail) {
+            new Thread(() -> {
+                hiloVivoEmail = true;
+                GEmailSenderUtil.sendEmail(email, subject, text);
+                Platform.runLater(() -> MensajeUtil.mensajeInformacion("", "El mensaje fue enviado al correo ingresado"));
+                hiloVivoEmail = false;
+            }).start();
+            return true;
+        }
+        return false;
     }
 
     private static class SingletonHolder {

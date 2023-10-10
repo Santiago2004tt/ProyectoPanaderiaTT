@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Persistencia {
     public static final String RUTA_ARCHIVO_MODELO_PANADERIA_BINARIO = "C:\\td\\persistencia/Model.dat";
     public static final String RUTA_ARCHIVO_MODELO_PANADERIA_XML = "C:\\td\\persistencia/Encript.xml";
+    public static final String RUTA_ARCHIVO_CREDENCIALES = "C:\\td\\persistencia/credenciales.txt";
 
 
     public static Panaderia cargarRecursoXML() {
@@ -56,5 +57,17 @@ public class Persistencia {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    public static ArrayList<String> cargarCredenciales() {
+
+        ArrayList<String> contenido = null;
+        try {
+            contenido = ArchivoUtil.leerArchivo(RUTA_ARCHIVO_CREDENCIALES);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return contenido;
     }
 }

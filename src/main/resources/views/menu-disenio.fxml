@@ -38,7 +38,7 @@
       <Label id="text" layoutX="35.0" layoutY="224.0" text="Sabor del relleno" />
       <TextArea fx:id="taDescripcion" disable="true" layoutX="35.0" layoutY="351.0" prefHeight="150.0" prefWidth="186.0" />
       <Button id="buttonNormal" fx:id="btnSeleccionarImagen" disable="true" layoutX="370.0" layoutY="531.0" mnemonicParsing="false" onAction="#seleccionarImagenAction" text="Seleccionar imagen" />
-      <Button id="buttonBack" layoutX="6.0" layoutY="7.0" mnemonicParsing="false" text="Regresar" />
+      <Button id="buttonBack" fx:id="btnRegresar" layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#regresarAction" text="Regresar" />
       <Button id="buttonNormal" fx:id="btnAceptar" layoutX="97.0" layoutY="531.0" mnemonicParsing="false" onAction="#aceptarAction" text="Aceptar" />
       <Pane id="paneImage" layoutX="333.0" layoutY="351.0">
          <children>

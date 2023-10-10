@@ -65,7 +65,10 @@ public class RecuperarContraseniaController {
             return;
         }
         if (!modelFactoryController.verificarContrasenaRequisitos(contrasenia)) {
-            MensajeUtil.mensajeAlerta("Alerta", "La contraseña tiene que ser mínimo de 8 caracteres de longitud contener una minúscula, una mayúscula, un número y un carácter especial");
+            MensajeUtil.mensajeAlerta("Alerta", """
+                    La contraseña tiene que ser mínimo de 8 caracteres\s
+                    de longitud contener una minúscula, una mayúscula,\s
+                    un número y un carácter especial""");
             return;
         }
         if (contrasenia.equals(verificarContrasenia)) {
@@ -100,7 +103,7 @@ public class RecuperarContraseniaController {
 
     @FXML
     void enviarCodigoAction(ActionEvent event) {
-        if (codigo == null) {
+        if (codigo != null) {
             MensajeUtil.mensajeAlerta("Alerta", "ya fue enviado un codigo");
             return;
         }
@@ -115,6 +118,7 @@ public class RecuperarContraseniaController {
         }
         Cliente cliente = modelFactoryController.verificarEmail(email);
         if (cliente == null) {
+            MensajeUtil.mensajeAlerta("Alerta", "EL correo no existe");
             return;
         }
 
@@ -130,9 +134,11 @@ public class RecuperarContraseniaController {
 
         String cuerpo = BodyEmailUtil.emailRecuperarContrasenia(nombreCliente, codigo);
 
-        GEmailSenderUtil.sendEmail(email, "", "Recuperación de contraseña - Código de recuperación", cuerpo);
-
-        tfCodigo.setDisable(false);
+        if (modelFactoryController.enviarEmail(email, "Recuperación de contraseña - Código de recuperación", cuerpo)) {
+            tfCodigo.setDisable(false);
+        } else {
+            MensajeUtil.mensajeAlerta("Alerta", "Ocurrio un error al enviar el mensaje");
+        }
     }
 
     @FXML
@@ -146,6 +152,7 @@ public class RecuperarContraseniaController {
         if (codigoIngresado.equals(codigo)) {
             pfContrasenia.setDisable(false);
             pfVerificarContrasenia.setDisable(false);
+            tfCodigo.setDisable(true);
         } else {
             MensajeUtil.mensajeAlerta("Alerta", "El código es incorrecto");
         }

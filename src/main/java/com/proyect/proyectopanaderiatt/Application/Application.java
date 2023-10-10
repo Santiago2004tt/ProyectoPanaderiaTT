@@ -106,6 +106,23 @@ public class Application extends javafx.application.Application {
         }
     }
 
+    public void mostarRecuperarContrasenia(){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/recuperar-contrasenia.fxml"));
+            AnchorPane rootLayout = loader.load();
+            RecuperarContraseniaController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public static void main(String[] args) {
         launch();

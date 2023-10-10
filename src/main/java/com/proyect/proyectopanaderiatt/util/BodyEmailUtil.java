@@ -132,7 +132,7 @@ public class BodyEmailUtil {
                                         <td style="text-align: center;">
                                             <p style="font-size: 18px; color: #333;">Estimado %s,</p>
                                             <p style="font-size: 16px; color: #555;">Hemos recibido una solicitud para restablecer la contraseña de su cuenta en panadería TT. Para garantizar la seguridad de su cuenta, hemos generado un código de recuperación que debe utilizar para completar este proceso.</p>
-                                            <p>Su código de recuperación es: %s</p>
+                                            <p style="font-size: 23px; color: black;">Su código de recuperación es: <span style="font-weight: bold;">%s<span></p>
                                             <p style="font-size: 16px; color: #555;">Atentamente,</p>
                                             <p style="font-size: 18px; color: #333;">Panaderia TT</p>
                                         </td>

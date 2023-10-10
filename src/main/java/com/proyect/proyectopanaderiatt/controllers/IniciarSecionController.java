@@ -80,7 +80,7 @@ public class IniciarSecionController {
 
     @FXML
     void recuperarContraseniaAction(ActionEvent event) {
-
+        application.mostarRecuperarContrasenia();
     }
 
     @FXML

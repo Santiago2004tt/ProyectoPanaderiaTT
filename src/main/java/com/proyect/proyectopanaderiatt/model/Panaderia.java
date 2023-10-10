@@ -443,4 +443,33 @@ public class Panaderia implements Serializable {
         }
         return cedula;
     }
+
+    /**
+     * verifica si el email existen en la panaderia
+     * @param email
+     * @return
+     */
+    public Cliente verificarEmail(String email) {
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getEmail().equals(email)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * cambia la contraseña de un cliente
+     * @param email
+     * @param contrasenia
+     * @return
+     */
+    public boolean cambiarContrasenia(String email, String contrasenia) {
+        Cliente cliente = verificarEmail(email);
+        if (cliente != null) {
+            cliente.getCuenta().setContrasena(contrasenia);
+            return true;
+        }
+        return false;
+    }
 }

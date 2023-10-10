@@ -1,11 +1,10 @@
 package com.proyect.proyectopanaderiatt.controllers;
+
 import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
 import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
 import com.proyect.proyectopanaderiatt.Persistencia.Persistencia;
 import com.proyect.proyectopanaderiatt.model.Cliente;
 import com.proyect.proyectopanaderiatt.model.Panaderia;
-
-import java.io.IOException;
 
 public class ModelFactoryController {
 
@@ -37,6 +36,14 @@ public class ModelFactoryController {
     public void crearCliente(Cliente cliente) throws ClienteException {
         panaderia.crearCliente(cliente);
         iniciarSalvarDatosPrueba();
+    }
+
+    public Cliente verificarEmail(String email) {
+        return panaderia.verificarEmail(email);
+    }
+
+    public boolean cambiarContrasenia(String email, String contrasenia) {
+        return panaderia.cambiarContrasenia(email, contrasenia);
     }
 
     private static class SingletonHolder {

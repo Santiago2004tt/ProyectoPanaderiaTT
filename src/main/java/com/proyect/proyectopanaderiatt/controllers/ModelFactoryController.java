@@ -5,6 +5,8 @@ import com.proyect.proyectopanaderiatt.Persistencia.Persistencia;
 import com.proyect.proyectopanaderiatt.model.Cliente;
 import com.proyect.proyectopanaderiatt.model.Panaderia;
 
+import java.io.IOException;
+
 public class ModelFactoryController {
 
     /**
@@ -34,6 +36,7 @@ public class ModelFactoryController {
 
     public void crearCliente(Cliente cliente) throws ClienteException {
         panaderia.crearCliente(cliente);
+        iniciarSalvarDatosPrueba();
     }
 
     private static class SingletonHolder {
@@ -45,9 +48,10 @@ public class ModelFactoryController {
     }
 
     public ModelFactoryController() {
-        panaderia = Persistencia.cargarRecursoXML();
+        panaderia = Persistencia.cargarRecursoBinario();
         if(panaderia == null) {
             inicializarDatos();
+            iniciarSalvarDatosPrueba();
         }
     }
 
@@ -62,6 +66,12 @@ public class ModelFactoryController {
         panaderia.setId("pntt01");
         panaderia.setUbicacion("Pereira");
         panaderia.setHorario("Lun-mar de 8:00 am a 9:00 pm");
+    }
+
+    private void iniciarSalvarDatosPrueba() {
+
+        Persistencia.guardarRecursoBinario(panaderia);
+
     }
 
 }

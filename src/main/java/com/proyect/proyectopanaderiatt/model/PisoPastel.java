@@ -1,10 +1,13 @@
 package com.proyect.proyectopanaderiatt.model;
 
-public class PisoPastel {
+import java.io.Serializable;
+
+public class PisoPastel implements Serializable {
     private String id;
     private Tamano tamano;
     private int numeroPiso;
     Pastel pastel;
+    private static final long serialVersioUID = 1L;
 
     public PisoPastel(String id, Tamano tamano, int numeroPiso, Pastel pastel) {
         this.id = id;

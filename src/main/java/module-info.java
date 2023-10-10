@@ -4,6 +4,7 @@ module com.proyect.proyectopanaderiatt {
     requires jakarta.mail;
     requires java.desktop;
 
+    exports com.proyect.proyectopanaderiatt.model;
     exports com.proyect.proyectopanaderiatt.Application;
     opens com.proyect.proyectopanaderiatt.Application to javafx.fxml;
     exports com.proyect.proyectopanaderiatt.controllers;

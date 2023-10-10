@@ -170,7 +170,6 @@ public class ArchivoUtil {
         objetoXML = decodificadorXML.readObject();
         decodificadorXML.close();
         return objetoXML;
-
     }
 
     public static void salvarRecursoSerializadoXML(String rutaArchivo, Object objeto) throws IOException {

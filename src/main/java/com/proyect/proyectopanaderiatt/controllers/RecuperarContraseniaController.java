@@ -143,7 +143,7 @@ public class RecuperarContraseniaController {
 
     @FXML
     void regresarAction(ActionEvent event) {
-
+        application.mostrarVentanaLogin();
     }
 
     @FXML

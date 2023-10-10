@@ -18,7 +18,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import com.proyect.proyectopanaderiatt.model.Cliente;
-import com.proyect.proyectopanaderiatt.model.Tamanos;
+import com.proyect.proyectopanaderiatt.model.Tamano;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -60,10 +60,10 @@ public class MenuDisenioController {
     private CheckBox chbDescripcion;
 
     @FXML
-    private TableColumn<Tamanos, Boolean> colSeleccionar;
+    private TableColumn<Tamano, Boolean> colSeleccionar;
 
     @FXML
-    private TableColumn<Tamanos, String> colTamanio;
+    private TableColumn<Tamano, String> colTamanio;
 
     @FXML
     private ImageView ivImagen;
@@ -72,10 +72,10 @@ public class MenuDisenioController {
     private TextArea taDescripcion;
 
     @FXML
-    private TableView<Tamanos> tblPisos;
+    private TableView<Tamano> tblPisos;
 
 
-    private ObservableList<Tamanos> tamanosData = FXCollections.observableArrayList(Tamanos.values());
+    private ObservableList<Tamano> tamanoData = FXCollections.observableArrayList(Tamano.values());
 
     public void setApplication(Application application, Cliente cliente) {
         this.application = application;
@@ -143,12 +143,12 @@ public class MenuDisenioController {
         cbTipoTorta.getItems().setAll(TipoTorta.values());
         cbSaborBizcocho.getItems().setAll(SaborBizcocho.values());
         cbSaborRelleno.getItems().setAll(SaborRelleno.values());
-        tblPisos.setItems(tamanosData);
+        tblPisos.setItems(tamanoData);
         colTamanio.setCellValueFactory(new PropertyValueFactory<>("valor"));
         colSeleccionar.setCellValueFactory(new PropertyValueFactory<>("seleccionado"));
-        colSeleccionar.setCellFactory(new Callback<TableColumn<Tamanos, Boolean>, TableCell<Tamanos, Boolean>>() {
+        colSeleccionar.setCellFactory(new Callback<TableColumn<Tamano, Boolean>, TableCell<Tamano, Boolean>>() {
             @Override
-            public TableCell<Tamanos, Boolean> call(TableColumn<Tamanos, Boolean> tamanosBooleanTableColumn) {
+            public TableCell<Tamano, Boolean> call(TableColumn<Tamano, Boolean> tamanosBooleanTableColumn) {
                 return new TableCell<>() {
                     @Override
                     protected void updateItem(Boolean aBoolean, boolean b) {
@@ -158,9 +158,9 @@ public class MenuDisenioController {
                             checkBox.setSelected(aBoolean);
                             checkBox.selectedProperty().addListener((ons, oldValue, newValue) -> {
                                 if (getTableRow() != null && getTableRow().getItem() != null) {
-                                    Tamanos tamanos = getTableRow().getItem();
+                                    Tamano tamano = getTableRow().getItem();
                                     // Ahora puedes acceder a la variable "tamanos" y modificarla
-                                    tamanos.setSeleccionado(newValue);
+                                    tamano.setSeleccionado(newValue);
                                 }
                             });
                             setGraphic(checkBox);
@@ -203,10 +203,10 @@ public class MenuDisenioController {
         }
     }
 
-    private ArrayList<Tamanos> tomarSeleccionados() {
-        ArrayList<Tamanos> seleccionados = new ArrayList<>();
-        ObservableList<Tamanos> lista = tblPisos.getItems();
-        for (Tamanos tamano : lista) {
+    private ArrayList<Tamano> tomarSeleccionados() {
+        ArrayList<Tamano> seleccionados = new ArrayList<>();
+        ObservableList<Tamano> lista = tblPisos.getItems();
+        for (Tamano tamano : lista) {
             if (tamano.isSeleccionado()) {
                 seleccionados.add(tamano);
                 System.out.println(tamano.getValor());

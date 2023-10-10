@@ -1,8 +1,9 @@
 package com.proyect.proyectopanaderiatt.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Persona {
+public class Persona implements Serializable {
     private String nombre;
     private String apellido;
     private String cedula;
@@ -11,6 +12,7 @@ public class Persona {
     private String direccion;
     private String identificacion;
     private Cuenta cuenta;
+    private static final long serialVersioUID = 1L;
 
     public Persona(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String identificacion, Cuenta cuenta) {
         this.nombre = nombre;

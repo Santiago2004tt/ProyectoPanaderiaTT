@@ -1,8 +1,9 @@
 package com.proyect.proyectopanaderiatt.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Pedido {
+public class Pedido implements Serializable {
     private String id;
     private double total;
     private String domiciliario;
@@ -14,6 +15,7 @@ public class Pedido {
     private Empleado empleado;
     private Pago pago;
     private ArrayList<DetallePedido> listaDetallesPedido;
+    private static final long serialVersioUID = 1L;
 
     public Pedido(String id, double total, String domiciliario, boolean pagoTotal, boolean valorIva, String fechaEmision, String fechaEntrega, Cliente cliente, Empleado empleado, Pago pago) {
         this.id = id;

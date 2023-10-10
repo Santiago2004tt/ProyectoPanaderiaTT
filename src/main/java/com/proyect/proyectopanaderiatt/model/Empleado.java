@@ -1,13 +1,15 @@
 package com.proyect.proyectopanaderiatt.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Empleado extends Persona {
+public class Empleado extends Persona implements Serializable {
     private Cargo cargo;
     private String fechaContrato;
     private String referencia;
     private String horaTrabajo;
     private ArrayList<Pago> listaPagos;
+    private static final long serialVersioUID = 1L;
 
     public Empleado(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String identificacion, Cuenta cuenta, Cargo cargo, String fechaContrato, String referencia, String horaTrabajo) {
         super(nombre, apellido, cedula, telefono, email, direccion, identificacion, cuenta);

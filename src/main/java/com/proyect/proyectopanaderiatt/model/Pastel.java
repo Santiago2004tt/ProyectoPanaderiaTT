@@ -1,8 +1,9 @@
 package com.proyect.proyectopanaderiatt.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Pastel {
+public class Pastel implements Serializable {
 
     private String id;
     private SaborRelleno saborRelleno;
@@ -13,6 +14,7 @@ public class Pastel {
     private String imagen;
     private Pedido pedido;
     private ArrayList<PisoPastel> listaPisoPasteles;
+    private static final long serialVersioUID = 1L;
 
     public Pastel(String id, SaborRelleno saborRelleno, TipoTorta tipoTorta, SaborBizcocho saborBizcocho, Forma forma, String descripcion, String imagen, Pedido pedido) {
         this.id = id;

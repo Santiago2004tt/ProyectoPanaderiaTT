@@ -1,14 +1,16 @@
 package com.proyect.proyectopanaderiatt.model;
 
+import java.io.Serializable;
 import java.security.Key;
 
-public class Cuenta {
+public class Cuenta implements Serializable {
 
     private String usuario;
     private String contrasena;
     private String codigoSeguridad;
     private String fechaCreacion;
     private Persona persona;
+    private static final long serialVersioUID = 1L;
 
     public Cuenta(String usuario, String contrasena, String codigoSeguridad, String fechaCreacion, Persona persona) {
         this.usuario = usuario;

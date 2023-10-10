@@ -1,11 +1,14 @@
 package com.proyect.proyectopanaderiatt.model;
 
-public class DetallePedido {
+import java.io.Serializable;
+
+public class DetallePedido implements Serializable {
 
     private String id;
     private double subTotal;
     private Pastel pastel;
     private Pedido pedido;
+    private static final long serialVersioUID = 1L;
 
     public DetallePedido(String id, double subTotal, Pastel pastel, Pedido pedido) {
         this.id = id;

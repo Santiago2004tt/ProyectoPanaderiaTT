@@ -2,6 +2,7 @@ package com.proyect.proyectopanaderiatt.controllers;
 
 import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
 import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
+import com.proyect.proyectopanaderiatt.Persistencia.Persistencia;
 import com.proyect.proyectopanaderiatt.model.Cliente;
 import com.proyect.proyectopanaderiatt.model.Panaderia;
 
@@ -29,11 +30,12 @@ public class ModelFactoryController {
     }
 
     public boolean verificarContrasenaRequisitos(String contrasena) {
-        return panaderia.verificarContraseña(contrasena);
+        return panaderia.verificarContrasena(contrasena);
     }
 
     public void crearCliente(Cliente cliente) throws ClienteException {
         panaderia.crearCliente(cliente);
+        iniciarSalvarDatosPrueba();
     }
 
     public Cliente verificarEmail(String email) {
@@ -53,9 +55,10 @@ public class ModelFactoryController {
     }
 
     public ModelFactoryController() {
-
+        panaderia = Persistencia.cargarRecursoBinario();
         if(panaderia == null) {
             inicializarDatos();
+            iniciarSalvarDatosPrueba();
         }
     }
 
@@ -64,11 +67,18 @@ public class ModelFactoryController {
     }
 
     private void inicializarPanaderia() {
+        panaderia = new Panaderia();
         panaderia.setNombre("PanaderiaTT");
         panaderia.setCalificacion(4);
         panaderia.setId("pntt01");
         panaderia.setUbicacion("Pereira");
         panaderia.setHorario("Lun-mar de 8:00 am a 9:00 pm");
+    }
+
+    private void iniciarSalvarDatosPrueba() {
+
+        Persistencia.guardarRecursoBinario(panaderia);
+
     }
 
 }

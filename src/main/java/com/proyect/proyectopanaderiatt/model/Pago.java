@@ -1,6 +1,8 @@
 package com.proyect.proyectopanaderiatt.model;
 
-public class Pago {
+import java.io.Serializable;
+
+public class Pago implements Serializable {
     private String id;
     private double valorPago;
     private EstadoPago estadoPago;
@@ -12,6 +14,7 @@ public class Pago {
     private Cliente cliente;
     private Empleado empleado;
     private Pedido pedido;
+    private static final long serialVersioUID = 1L;
 
     public Pago(String id, double valorPago, EstadoPago estadoPago, String numeroTarjeta, String fechaVencimiento, String codigoSeguridad, String nombreBanco, MetodoAutorizacion metodoAutorizacion, Cliente cliente, Empleado empleado, Pedido pedido) {
         this.id = id;

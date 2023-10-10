@@ -65,7 +65,7 @@ public class CrearCuentaController {
     private void registrarse() {
         String usuario = tfUsuario.getText();
         String contrasena = pfContrasenia.getText();
-        String contrasenaRep = pfContrasenia.getText();
+        String contrasenaRep = pfConfirmarContrasenia.getText();
         if(verificarEspacio(usuario) && verificarRepetido(contrasena, contrasenaRep)){
             if(modelFactoryController.verificarUsuarioUnico(usuario)){
                 if(modelFactoryController.verificarContrasenaRequisitos(contrasena)){
@@ -75,8 +75,8 @@ public class CrearCuentaController {
                         cuenta.setContrasena(contrasena);
                         cuenta.setPersona(cliente);
                         cuenta.setFechaCreacion(String.valueOf(LocalDate.now()));
-                        modelFactoryController.crearCliente(cliente);
                         cliente.crearCuenta(cuenta);
+                        modelFactoryController.crearCliente(cliente);
                         application.mostrarVentanaLogin();
                     }catch (ClienteException e){
                         MensajeUtil.mensajeAlerta("Error", e.getMessage());

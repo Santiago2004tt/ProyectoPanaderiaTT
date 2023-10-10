@@ -1,16 +1,18 @@
 package com.proyect.proyectopanaderiatt.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Cliente extends Persona{
+public class Cliente extends Persona implements Serializable {
 
     private double nivelLealtad;
     private String ocupacion;
     private String foto;
     private ArrayList<Pedido> listaPedidos;
     private ArrayList<Pago> listaPagos;
+    private static final long serialVersioUID = 1L;
 
     public Cliente(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String identificacion, Cuenta cuenta, double nivelLealtad, String ocupacion, String foto) {
         super(nombre, apellido, cedula, telefono, email, direccion, identificacion, cuenta);

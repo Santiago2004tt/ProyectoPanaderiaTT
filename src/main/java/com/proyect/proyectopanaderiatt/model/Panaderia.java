@@ -5,12 +5,13 @@ import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
 import com.proyect.proyectopanaderiatt.Exceptions.EmpleadoException;
 import com.proyect.proyectopanaderiatt.Exceptions.PedidoException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Panaderia {
+public class Panaderia implements Serializable {
 
     private String id;
     private String ubicacion;
@@ -21,6 +22,7 @@ public class Panaderia {
     private ArrayList<Empleado> listaEmpleados;
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Pedido> listaPedidos;
+    private static final long serialVersioUID = 1L;
 
     public Panaderia(String id, String ubicacion, String horario, String correoElectronico, double calificacion, String nombre) {
         this.id = id;
@@ -407,14 +409,14 @@ public class Panaderia {
 
     /**
      * verifica si la contrasena se puede utilizar, cumple con los requisitos
-     * @param contraseña
+     * @param contrasena
      * @return
      */
-    public boolean verificarContraseña(String contraseña) {
+    public boolean verificarContrasena(String contrasena) {
         // La expresión regular para verificar la contraseña
-        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!.-])(?=\\S+$).{8,}$";
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!.,_/~'()*:;<>?])(?=\\S+$).{8,}$";
         Pattern pattern = Pattern.compile(regex); //patron de busqueda
-        Matcher matcher = pattern.matcher(contraseña); //compara el patron de busqueda con la contraseña
+        Matcher matcher = pattern.matcher(contrasena); //compara el patron de busqueda con la contraseña
         //si cumple el matcher guarda un true, si no guarda un false
         return matcher.matches();
     }
@@ -431,7 +433,6 @@ public class Panaderia {
         if(verificarUsuarioClienteUnico(usuario)){
             throw new CuentaException("La cuenta no a sido encontrada");
         }else {
-            System.out.println("funciona");
             Iterator<Cliente> iterator = getListaClientes().iterator();
             while (iterator.hasNext()){
                 Cliente cliente = iterator.next();

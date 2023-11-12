@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyect.proyectopanaderiatt.controllers.CatalogoController">
+   <children>
+      <Label id="title" layoutX="258.0" layoutY="14.0" text="Catalogo" />
+      <Button id="right" fx:id="btnDerecha" layoutX="546.0" layoutY="212.0" mnemonicParsing="false" onAction="#derechaAction" text="Next">
+         <tooltip>
+            <Tooltip text="Siguiente" />
+         </tooltip></Button>
+      <Button id="left" fx:id="btnIzquierda" layoutX="14.0" layoutY="212.0" mnemonicParsing="false" onAction="#izquierdaAction" text="Previous">
+         <tooltip>
+            <Tooltip text="Atras" />
+         </tooltip></Button>
+      <Button id="buttonBack" fx:id="btnRegresar" layoutX="7.0" layoutY="7.0" mnemonicParsing="false" onAction="#regresarAction" text="Regresar" />
+      <ScrollPane id="scroll" hbarPolicy="NEVER" hmax="0.0" layoutX="75.0" layoutY="138.0" prefHeight="187.0" prefWidth="444.0" vbarPolicy="NEVER" vmax="0.0">
+         <content>
+            <HBox fx:id="hBoxCatalogo" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="171.0" spacing="4.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

@@ -13,7 +13,7 @@ public class Application extends javafx.application.Application {
 
     Stage stage;
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         this.stage = stage;
         mostrarVentanaLogin();
     }
@@ -115,6 +115,23 @@ public class Application extends javafx.application.Application {
             AnchorPane rootLayout = loader.load();
             RecuperarContraseniaController controller = loader.getController();//Obtenemos el controlador
             controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostarCatalogo(Cliente cliente){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/catalogo.fxml"));
+            AnchorPane rootLayout = loader.load();
+            CatalogoController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
             Scene scene = new Scene(rootLayout);
             stage.setScene(scene);
             stage.show();

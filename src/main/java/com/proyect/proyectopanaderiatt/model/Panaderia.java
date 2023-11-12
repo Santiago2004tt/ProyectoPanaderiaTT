@@ -22,6 +22,7 @@ public class Panaderia implements Serializable {
     private ArrayList<Empleado> listaEmpleados;
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Pedido> listaPedidos;
+    private ArrayList<Pastel> listaPasteles;
     private static final long serialVersioUID = 1L;
 
     public Panaderia(String id, String ubicacion, String horario, String correoElectronico, double calificacion, String nombre) {
@@ -34,12 +35,14 @@ public class Panaderia implements Serializable {
         listaClientes = new ArrayList<>();
         listaEmpleados = new ArrayList<>();
         listaPedidos = new ArrayList<>();
+        listaPasteles = new ArrayList<>();
     }
 
     public Panaderia() {
         listaClientes = new ArrayList<>();
         listaEmpleados = new ArrayList<>();
         listaPedidos = new ArrayList<>();
+        listaPasteles = new ArrayList<>();
     }
 
     public String getId() {
@@ -114,6 +117,13 @@ public class Panaderia implements Serializable {
         this.listaPedidos = listaPedidos;
     }
 
+    public ArrayList<Pastel> getListaPasteles() {
+        return listaPasteles;
+    }
+
+    public void setListaPasteles(ArrayList<Pastel> listaPasteles) {
+        this.listaPasteles = listaPasteles;
+    }
 
     //Crud de cliente
 

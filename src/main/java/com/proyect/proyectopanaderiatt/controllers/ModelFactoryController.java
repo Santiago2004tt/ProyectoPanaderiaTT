@@ -3,8 +3,7 @@ package com.proyect.proyectopanaderiatt.controllers;
 import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
 import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
 import com.proyect.proyectopanaderiatt.Persistencia.Persistencia;
-import com.proyect.proyectopanaderiatt.model.Cliente;
-import com.proyect.proyectopanaderiatt.model.Panaderia;
+import com.proyect.proyectopanaderiatt.model.*;
 import com.proyect.proyectopanaderiatt.util.GEmailSenderUtil;
 import com.proyect.proyectopanaderiatt.util.MensajeUtil;
 import javafx.application.Platform;
@@ -71,6 +70,10 @@ public class ModelFactoryController {
 
     public static ModelFactoryController getInstance() {
         return SingletonHolder.eInstance;
+    }
+
+    public Panaderia getPanaderia() {
+        return panaderia;
     }
 
     public ModelFactoryController() {

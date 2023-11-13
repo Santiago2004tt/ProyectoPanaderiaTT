@@ -18,11 +18,23 @@
          <tooltip>
             <Tooltip text="Atras" />
          </tooltip></Button>
-      <Button id="buttonBack" fx:id="btnRegresar" layoutX="7.0" layoutY="7.0" mnemonicParsing="false" onAction="#regresarAction" text="Regresar" />
+      <Button id="buttonBack" fx:id="btnRegresar" layoutX="7.0" layoutY="7.0" mnemonicParsing="false" onAction="#regresarAction" text="Regresar">
+         <tooltip>
+            <Tooltip text="Salir" />
+         </tooltip></Button>
       <ScrollPane id="scroll" hbarPolicy="NEVER" hmax="0.0" layoutX="75.0" layoutY="138.0" prefHeight="187.0" prefWidth="444.0" vbarPolicy="NEVER" vmax="0.0">
          <content>
             <HBox fx:id="hBoxCatalogo" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="171.0" spacing="4.0" />
          </content>
       </ScrollPane>
+      <Button id="buttonCar" fx:id="btnCarrito" layoutX="546.0" layoutY="24.0" mnemonicParsing="false" onAction="#carritoAction" text="Carrito">
+         <tooltip>
+            <Tooltip text="Carrito de compras" />
+         </tooltip>
+      </Button>
+      <Button id="buttonUser" fx:id="btnUsuario" layoutX="504.0" layoutY="24.0" mnemonicParsing="false" onAction="#usuarioAction" text="User">
+         <tooltip>
+            <Tooltip text="Cuenta de usuario" />
+         </tooltip></Button>
    </children>
 </AnchorPane>

@@ -57,7 +57,7 @@ public class IniciarSecionController {
             try {
                 cedula = modelFactoryController.verificarUsuarioContrasena(usuario, contrasena);
                 Cliente cliente = modelFactoryController.buscarCliente(cedula);
-                application.mostarCatalogo(cliente);
+                application.mostrarCatalogo(cliente);
             } catch (CuentaException e){
                 MensajeUtil.mensajeAlerta("Error", e.getMessage());
             }catch (ClienteException e){
@@ -80,7 +80,7 @@ public class IniciarSecionController {
 
     @FXML
     void recuperarContraseniaAction(ActionEvent event) {
-        application.mostarRecuperarContrasenia();
+        application.mostrarRecuperarContrasenia();
     }
 
     @FXML

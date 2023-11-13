@@ -27,6 +27,9 @@ public class CatalogoController {
     Cliente cliente;
 
     @FXML
+    private Button btnCarrito;
+
+    @FXML
     private Button btnDerecha;
 
     @FXML
@@ -36,7 +39,15 @@ public class CatalogoController {
     private Button btnRegresar;
 
     @FXML
+    private Button btnUsuario;
+
+    @FXML
     private HBox hBoxCatalogo;
+
+    @FXML
+    void carritoAction(ActionEvent event) {
+
+    }
 
     @FXML
     void derechaAction(ActionEvent event) {
@@ -50,7 +61,12 @@ public class CatalogoController {
 
     @FXML
     void regresarAction(ActionEvent event) {
+        application.mostrarVentanaLogin();
+    }
 
+    @FXML
+    void usuarioAction(ActionEvent event) {
+        application.mostrarPerfil(cliente);
     }
 
     private ObservableList<Pastel> pastelesData = FXCollections.observableArrayList();
@@ -110,8 +126,7 @@ public class CatalogoController {
             contenedor.setStyle("-fx-background-color: lightblue");
             Image image = new Image(pastel.getImagen());
             ImageView imageView = new ImageView(image);
-            int finalI = i;
-            contenedor.setOnMouseClicked(x -> System.out.printf("click %s\n", finalI));
+            contenedor.setOnMouseClicked(x -> application.mostrarMenuDisenio(cliente, pastel));
             contenedor.setCursor(Cursor.HAND);
             imageView.setFitHeight(150);
             imageView.setFitWidth(150);

@@ -10,6 +10,8 @@ public class Cliente extends Persona implements Serializable {
     private double nivelLealtad;
     private String ocupacion;
     private String foto;
+    private Pedido carrito;
+    private Pastel respaldoPastel;
     private ArrayList<Pedido> listaPedidos;
     private ArrayList<Pago> listaPagos;
     private static final long serialVersioUID = 1L;
@@ -66,6 +68,22 @@ public class Cliente extends Persona implements Serializable {
         this.listaPagos = listaPagos;
     }
 
+    public Pedido getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Pedido carrito) {
+        this.carrito = carrito;
+    }
+
+    public Pastel getRespaldoPastel() {
+        return respaldoPastel;
+    }
+
+    public void setRespaldoPastel(Pastel respaldoPastel) {
+        this.respaldoPastel = respaldoPastel;
+    }
+
     /**
      * metodo que verifica si existe el usuario o no
      * @param usuario
@@ -99,5 +117,13 @@ public class Cliente extends Persona implements Serializable {
             return true;
         }
         return false;
+    }
+
+    public void agreagarAlCarrito(DetallePedido detallePedido) {
+        if (carrito == null) {
+            carrito = new Pedido();
+            carrito.setCliente(this);
+        }
+        carrito.agregarDetallePedido(detallePedido);
     }
 }

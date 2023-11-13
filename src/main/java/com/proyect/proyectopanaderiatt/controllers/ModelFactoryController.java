@@ -8,6 +8,9 @@ import com.proyect.proyectopanaderiatt.util.GEmailSenderUtil;
 import com.proyect.proyectopanaderiatt.util.MensajeUtil;
 import javafx.application.Platform;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModelFactoryController {
 
     /**

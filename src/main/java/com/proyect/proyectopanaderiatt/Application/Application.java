@@ -2,6 +2,8 @@ package com.proyect.proyectopanaderiatt.Application;
 
 import com.proyect.proyectopanaderiatt.controllers.*;
 import com.proyect.proyectopanaderiatt.model.Cliente;
+import com.proyect.proyectopanaderiatt.model.Pastel;
+import com.proyect.proyectopanaderiatt.model.Pedido;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -89,7 +91,7 @@ public class Application extends javafx.application.Application {
             throw new RuntimeException(e);
         }
     }
-    public void mostrarMenuDisenio(Cliente cliente){
+    public void mostrarMenuDisenio(Cliente cliente, Pastel pastel){
         try {
             stage.close();
             stage = new Stage();
@@ -97,7 +99,7 @@ public class Application extends javafx.application.Application {
             loader.setLocation(Application.class.getResource("/views/menu-disenio.fxml"));
             AnchorPane rootLayout = loader.load();
             MenuDisenioController controller = loader.getController();//Obtenemos el controlador
-            controller.setApplication(this, cliente);
+            controller.setApplication(this, cliente, pastel);
             Scene scene = new Scene(rootLayout);
             stage.setScene(scene);
             stage.show();
@@ -106,7 +108,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostarRecuperarContrasenia(){
+    public void mostrarRecuperarContrasenia(){
         try {
             stage.close();
             stage = new Stage();
@@ -123,7 +125,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostarCatalogo(Cliente cliente){
+    public void mostrarCatalogo(Cliente cliente){
         try {
             stage.close();
             stage = new Stage();
@@ -132,6 +134,23 @@ public class Application extends javafx.application.Application {
             AnchorPane rootLayout = loader.load();
             CatalogoController controller = loader.getController();//Obtenemos el controlador
             controller.setApplication(this, cliente);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarFactura(Cliente cliente, Pedido pedido){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/factura.fxml"));
+            AnchorPane rootLayout = loader.load();
+            FacturaController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente, pedido);
             Scene scene = new Scene(rootLayout);
             stage.setScene(scene);
             stage.show();

@@ -114,3 +114,10 @@
     -fx-background-insets: 0;
     -fx-opacity: 0;
 }
+#carritoProductos .viewport,
+#carritoProductos {
+    -fx-background-color: transparent;
+}
+#panelTotal {
+    -fx-background-color: #e7c8ce;
+}

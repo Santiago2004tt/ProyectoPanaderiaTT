@@ -4,13 +4,16 @@ import com.proyect.proyectopanaderiatt.Application.Application;
 import com.proyect.proyectopanaderiatt.model.Cliente;
 import com.proyect.proyectopanaderiatt.model.Pastel;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -46,7 +49,7 @@ public class CatalogoController {
 
     @FXML
     void carritoAction(ActionEvent event) {
-
+        application.mostrarCarrito(cliente);
     }
 
     @FXML
@@ -136,5 +139,33 @@ public class CatalogoController {
             vBoxes.add(contenedor);
         }
         return vBoxes;
+    }
+
+    public void verificarRespaldo() {
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            Platform.runLater(() -> {
+                if (cliente.getRespaldoPastel() != null) {
+                    if (confirmacion("Se encontraron datos de un pedido sin terminar, desea continuar")) {
+                        application.mostrarMenuDisenio(cliente, cliente.getRespaldoPastel());
+                    } else {
+                        cliente.setRespaldoPastel(null);
+                    }
+                }
+            }
+            );
+        }).start();
+    }
+
+    private boolean confirmacion(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText(mensaje);
+        alert.setHeaderText(null);
+        ButtonType resultado = alert.showAndWait().orElse(ButtonType.CANCEL);
+        return resultado == ButtonType.OK;
     }
 }

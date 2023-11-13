@@ -142,6 +142,24 @@ public class Application extends javafx.application.Application {
         }
     }
 
+    public void mostrarCatalogoConVerificacion(Cliente cliente){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/catalogo.fxml"));
+            AnchorPane rootLayout = loader.load();
+            CatalogoController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
+            controller.verificarRespaldo();
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void mostrarFactura(Cliente cliente, Pedido pedido){
         try {
             stage.close();
@@ -151,6 +169,23 @@ public class Application extends javafx.application.Application {
             AnchorPane rootLayout = loader.load();
             FacturaController controller = loader.getController();//Obtenemos el controlador
             controller.setApplication(this, cliente, pedido);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarCarrito(Cliente cliente){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/carrito.fxml"));
+            AnchorPane rootLayout = loader.load();
+            CarritoController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
             Scene scene = new Scene(rootLayout);
             stage.setScene(scene);
             stage.show();

@@ -125,5 +125,6 @@ public class Cliente extends Persona implements Serializable {
             carrito.setCliente(this);
         }
         carrito.agregarDetallePedido(detallePedido);
+        detallePedido.setPedido(carrito);
     }
 }

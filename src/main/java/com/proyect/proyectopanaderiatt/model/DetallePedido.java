@@ -25,6 +25,11 @@ public class DetallePedido implements Serializable {
         calcularSubtotal();
     }
 
+    public DetallePedido(Pastel pastel) {
+        this.pastel = pastel;
+        calcularSubtotal();
+    }
+
     public DetallePedido() {
     }
 
@@ -70,7 +75,7 @@ public class DetallePedido implements Serializable {
         subTotal += panaderia.getPrecioTipoTorta().get(pastel.getTipoTorta());
         subTotal += panaderia.getPrecioSaborBizcocho().get(pastel.getSaborBizcocho());
         subTotal += panaderia.getPrecioSaborRelleno().get(pastel.getSaborRelleno());
-        if (!pastel.getDescripcion().isEmpty()) {
+        if (!(pastel.getDescripcion() == null)) {
             subTotal += 15000;
         }
         for (PisoPastel pisoPastel : pastel.getListaPisoPasteles()) {

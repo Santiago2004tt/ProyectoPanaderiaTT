@@ -2,7 +2,7 @@ package com.proyect.proyectopanaderiatt.util;
 
 public class BodyEmailUtil {
 
-    public static String textMail(String destinatario, String remitente) {
+    public static String creacionCuenta(String destinatario, String remitente) {
         return String.format("""
                 <html lang="es">
                 <head>
@@ -59,7 +59,7 @@ public class BodyEmailUtil {
                                     <tr>
                                         <td style="text-align: center;">
                                             <p style="font-size: 18px; color: #333;">Estimado/a %s,</p>
-                                            <p style="font-size: 18px; color: #333;> Bienvenido a nuestra pastelería ahora puede realizar pedidos</p>
+                                            <p style="font-size: 18px; color: #333;"> Bienvenido/a! Estamos encantados de tenerte con nosotros. Gracias por elegir unirte a nuestra comunidad. Esperamos que disfrutes de tu experiencia aquí. Si tienes alguna pregunta o necesitas ayuda, no dudes en preguntar. ¡Bienvenido/a a bordo!</p>
                                             <p style="font-size: 16px; color: #555;">¡Esperamos tengas una buena experiencia!</p>
                                             <p style="font-size: 16px; color: #555;">Atentamente,</p>
                                             <p style="font-size: 18px; color: #333;">%s</p>
@@ -130,8 +130,8 @@ public class BodyEmailUtil {
                                 <table width="100%%" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td style="text-align: center;">
-                                            <p style="font-size: 18px; color: #333;">Estimado %s,</p>
-                                            <p style="font-size: 16px; color: #555;">Hemos recibido una solicitud para restablecer la contraseña de su cuenta en panadería TT. Para garantizar la seguridad de su cuenta, hemos generado un código de recuperación que debe utilizar para completar este proceso.</p>
+                                            <p style="font-size: 18px; color: #333;">Estimado/a %s,</p>
+                                            <p style="font-size: 16px; color: #555;">Hemos recibido una solicitud para restablecer la contraseña de su cuenta en panaderíaTT. Para garantizar la seguridad de su cuenta, hemos generado un código de recuperación que debe utilizar para completar este proceso.</p>
                                             <p style="font-size: 23px; color: black;">Su código de recuperación es: <span style="font-weight: bold;">%s<span></p>
                                             <p style="font-size: 16px; color: #555;">Atentamente,</p>
                                             <p style="font-size: 18px; color: #333;">Panaderia TT</p>
@@ -164,7 +164,7 @@ public class BodyEmailUtil {
                                 
                         /* Estilos para el encabezado */
                         .header {
-                            background-color: grey;
+                            background-color: green;
                             color: white;
                             padding: 20px;
                             text-align: center;
@@ -203,7 +203,7 @@ public class BodyEmailUtil {
                                 <table width="100%%" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td style="text-align: center;">
-                                            <p style="font-size: 18px; color: #333;">Estimado %s,</p>
+                                            <p style="font-size: 18px; color: #333;">Estimado/a %s,</p>
                                             <p style="font-size: 16px; color: #555;">Hemos recibido su orden y se agrego a la lista de espera muchas gracias</p>
                                             <p style="font-size: 23px; color: black;"> <span style="font-weight: bold;">%s<span></p>
                                             <p style="font-size: 16px; color: #555;">Atentamente,</p>

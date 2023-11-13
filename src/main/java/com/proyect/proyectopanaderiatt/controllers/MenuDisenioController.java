@@ -1,35 +1,23 @@
 package com.proyect.proyectopanaderiatt.controllers;
 
 import com.proyect.proyectopanaderiatt.Application.Application;
+import com.proyect.proyectopanaderiatt.Exceptions.PedidoException;
 import com.proyect.proyectopanaderiatt.model.*;
-import com.proyect.proyectopanaderiatt.util.BodyEmailUtil;
 import com.proyect.proyectopanaderiatt.util.MensajeUtil;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-
-import java.io.File;
-import com.proyect.proyectopanaderiatt.model.Cliente;
-import com.proyect.proyectopanaderiatt.model.Tamano;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.List;
 
 
 public class MenuDisenioController {
@@ -37,15 +25,23 @@ public class MenuDisenioController {
     Application application;
     ModelFactoryController modelFactoryController;
     Cliente cliente;
+    Pastel pastel;
     Image imageAux;
+
     @FXML
-    private Button btnAceptar;
+    private Button btnAgregarCarrito;
+
+    @FXML
+    private Button btnComprar;
 
     @FXML
     private Button btnRegresar;
 
     @FXML
     private Button btnSeleccionarImagen;
+
+    @FXML
+    private ComboBox<Forma> cbFormaPastel;
 
     @FXML
     private ComboBox<SaborBizcocho> cbSaborBizcocho;
@@ -75,43 +71,75 @@ public class MenuDisenioController {
     private TableView<Tamano> tblPisos;
 
 
-    private ObservableList<Tamano> tamanoData = FXCollections.observableArrayList(Tamano.values());
+    private ObservableList<Tamano> tamanoData = FXCollections.observableArrayList();
 
-    public void setApplication(Application application, Cliente cliente) {
+    public ObservableList<Tamano> getTamanoData() {
+        for (Tamano tamano : Tamano.values()) {
+            tamano.setSeleccionado(false);
+        }
+        tamanoData.addAll(Tamano.values());
+        return tamanoData;
+    }
+
+    public void setApplication(Application application, Cliente cliente, Pastel pastel) {
         this.application = application;
         this.cliente = cliente;
+        this.pastel = pastel;
+        cargarDatos();
     }
 
     @FXML
-    void aceptarAction(ActionEvent event) {
-        aceptar();
+    void agregarCarritoAction() {
+
     }
 
-    private void aceptar() {
-        String email = cliente.getEmail();
-        if(verificar()){
-            if (email.isEmpty()) {
-                MensajeUtil.mensajeAlerta("Alerta", "EL campo email es requerido");
-                return;
-            }
-            if(!(email.contains("@") && email.contains(".") && !email.contains(" "))){
-                MensajeUtil.mensajeAlerta("Error", "El correo no es valido");
-                return;
-            }
-            String nombreCliente = cliente.getNombre() + " " + cliente.getApellido();
-
-
-            // Asegurarse de que el número tenga exactamente 4 dígitos
-           String mensaje = "El pedido se a realizado";
-
-            String cuerpo = BodyEmailUtil.emailPedido(nombreCliente, mensaje);
-
-            if (modelFactoryController.enviarEmail(email, "Realizacion de pedido", cuerpo)) {
-                application.mostrarPerfil(cliente);
-            } else {
-                MensajeUtil.mensajeAlerta("Alerta", "Ocurrio un error al enviar el mensaje");
-            }
+    @FXML
+    void comprarAction(ActionEvent event) {
+        try {
+            comprar();
+        } catch (PedidoException e) {
+            MensajeUtil.mensajeAlerta("Alerta", e.getMessage());
         }
+    }
+
+    private void comprar() throws PedidoException {
+        TipoTorta tipoTorta = cbTipoTorta.getValue();
+        SaborBizcocho saborBizcocho = cbSaborBizcocho.getValue();
+        SaborRelleno saborRelleno = cbSaborRelleno.getValue();
+        Forma forma = cbFormaPastel.getValue();
+        String descripcion = taDescripcion.getText();
+        String imagen = ivImagen.getImage().getUrl();
+        ArrayList<Tamano> seleccion = tomarSeleccionados();
+        if (verificar()) {
+            if (saborBizcocho == SaborBizcocho.TORTA_FRIA && seleccion.size() > 2)
+                throw new PedidoException("La cantidad de pisos para el sabor de bizcocho de torta fria no puede ser mayor a 2");
+
+            Pastel pastelComprar = capturarPastel(saborRelleno, tipoTorta, saborBizcocho, forma, descripcion, imagen, seleccion);
+
+            Pedido pedido = new Pedido();
+            pedido.setCliente(cliente);
+            DetallePedido detallePedido = new DetallePedido(pastelComprar, pedido);
+            pastelComprar.setPedido(pedido);
+            pedido.getListaDetallesPedido().add(detallePedido);
+            application.mostrarFactura(cliente, pedido);
+        } else {
+            MensajeUtil.mensajeAlerta("Alerta", "Faltan datos por rellenar");
+        }
+    }
+
+    private Pastel capturarPastel(SaborRelleno saborRelleno, TipoTorta tipoTorta, SaborBizcocho saborBizcocho, Forma forma,
+                                  String descripcion, String imagen, ArrayList<Tamano> seleccion) {
+        Pastel pastel = new Pastel(saborRelleno, tipoTorta, saborBizcocho, forma);
+        ArrayList<PisoPastel> pisosPastel = new ArrayList<>();
+        for (int i = 0; i < seleccion.size(); i++) {
+            pisosPastel.add(new PisoPastel(seleccion.get(i), 5 - i, this.pastel));
+        }
+        pastel.setListaPisoPasteles(pisosPastel);
+        if (!descripcion.isEmpty()) {
+            pastel.setDescripcion(descripcion);
+            pastel.setImagen(imagen);
+        }
+        return pastel;
     }
 
     private boolean verificar() {
@@ -124,12 +152,26 @@ public class MenuDisenioController {
         if(cbTipoTorta.getValue() == null){
             return false;
         }
+        if(cbFormaPastel.getValue() == null){
+            return false;
+        }
+        if(tomarSeleccionados().isEmpty()){
+            return false;
+        }
+        if (chbDescripcion.isSelected()) {
+            if (taDescripcion.getText().isEmpty()) {
+                return false;
+            }
+            if (ivImagen.getImage() == null) {
+                return false;
+            }
+        }
         return true;
     }
 
     @FXML
     void regresarAction(ActionEvent event) {
-        application.mostrarPerfil(cliente);
+        application.mostrarCatalogo(cliente);
     }
 
     @FXML
@@ -140,10 +182,14 @@ public class MenuDisenioController {
     @FXML
     void initialize() {
         this.modelFactoryController = ModelFactoryController.getInstance();
+
         cbTipoTorta.getItems().setAll(TipoTorta.values());
         cbSaborBizcocho.getItems().setAll(SaborBizcocho.values());
         cbSaborRelleno.getItems().setAll(SaborRelleno.values());
-        tblPisos.setItems(tamanoData);
+        cbFormaPastel.getItems().setAll(Forma.values());
+
+        tblPisos.setItems(getTamanoData());
+
         colTamanio.setCellValueFactory(new PropertyValueFactory<>("valor"));
         colSeleccionar.setCellValueFactory(new PropertyValueFactory<>("seleccionado"));
         colSeleccionar.setCellFactory(new Callback<TableColumn<Tamano, Boolean>, TableCell<Tamano, Boolean>>() {
@@ -209,10 +255,30 @@ public class MenuDisenioController {
         for (Tamano tamano : lista) {
             if (tamano.isSeleccionado()) {
                 seleccionados.add(tamano);
-                System.out.println(tamano.getValor());
             }
         }
         return seleccionados;
     }
 
+    private void cargarDatos() {
+        if (pastel == null) {
+            return;
+        }
+        cbTipoTorta.getSelectionModel().select(pastel.getTipoTorta());
+        cbSaborBizcocho.getSelectionModel().select(pastel.getSaborBizcocho());
+        cbSaborRelleno.getSelectionModel().select(pastel.getSaborRelleno());
+        cbFormaPastel.getSelectionModel().select(pastel.getForma());
+        List<PisoPastel> pisos = pastel.getListaPisoPasteles();
+        for (PisoPastel piso : pisos) {
+            for (Tamano tamano : Tamano.values()) {
+                if (piso.getTamano() == tamano)
+                    tamano.setSeleccionado(true);
+            }
+        }
+        if (!pastel.getDescripcion().isEmpty()) {
+            chbDescripcion.setSelected(true);
+            taDescripcion.setText(pastel.getDescripcion());
+            ivImagen.setImage(new Image(pastel.getImagen()));
+        }
+    }
 }

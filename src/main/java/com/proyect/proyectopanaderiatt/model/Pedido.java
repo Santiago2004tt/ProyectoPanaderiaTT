@@ -122,4 +122,16 @@ public class Pedido implements Serializable {
     public void setListaDetallesPedido(ArrayList<DetallePedido> listaDetallesPedido) {
         this.listaDetallesPedido = listaDetallesPedido;
     }
+
+    public void agregarDetallePedido(DetallePedido detallePedido) {
+        listaDetallesPedido.add(detallePedido);
+        calcularTotal();
+    }
+
+    private void calcularTotal() {
+        total = 0;
+        for (DetallePedido detallePedido : listaDetallesPedido) {
+            total += detallePedido.getSubTotal();
+        }
+    }
 }

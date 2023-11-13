@@ -1,5 +1,7 @@
 package com.proyect.proyectopanaderiatt.model;
 
+import com.proyect.proyectopanaderiatt.controllers.ModelFactoryController;
+
 import java.io.Serializable;
 
 public class DetallePedido implements Serializable {
@@ -10,11 +12,17 @@ public class DetallePedido implements Serializable {
     private Pedido pedido;
     private static final long serialVersioUID = 1L;
 
-    public DetallePedido(String id, double subTotal, Pastel pastel, Pedido pedido) {
+    public DetallePedido(String id, Pastel pastel, Pedido pedido) {
         this.id = id;
-        this.subTotal = subTotal;
         this.pastel = pastel;
         this.pedido = pedido;
+        calcularSubtotal();
+    }
+
+    public DetallePedido(Pastel pastel, Pedido pedido) {
+        this.pastel = pastel;
+        this.pedido = pedido;
+        calcularSubtotal();
     }
 
     public DetallePedido() {
@@ -50,5 +58,23 @@ public class DetallePedido implements Serializable {
 
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
+    }
+
+    /**
+     * calcula el precio del pastel almacenado
+     */
+    private void calcularSubtotal() {
+        subTotal = 0;
+        Panaderia panaderia = ModelFactoryController.getInstance().getPanaderia();
+
+        subTotal += panaderia.getPrecioTipoTorta().get(pastel.getTipoTorta());
+        subTotal += panaderia.getPrecioSaborBizcocho().get(pastel.getSaborBizcocho());
+        subTotal += panaderia.getPrecioSaborRelleno().get(pastel.getSaborRelleno());
+        if (!pastel.getDescripcion().isEmpty()) {
+            subTotal += 15000;
+        }
+        for (PisoPastel pisoPastel : pastel.getListaPisoPasteles()) {
+            subTotal += panaderia.precioPisos.get(pisoPastel.getTamano());
+        }
     }
 }

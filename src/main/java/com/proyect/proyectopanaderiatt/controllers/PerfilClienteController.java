@@ -46,7 +46,7 @@ public class PerfilClienteController {
 
     @FXML
     void crearPedidoAction(ActionEvent event) {
-        application.mostrarMenuDisenio(cliente);
+        application.mostrarMenuDisenio(cliente, null);
     }
 
     @FXML
@@ -56,7 +56,7 @@ public class PerfilClienteController {
 
     @FXML
     void regresarAction(ActionEvent event) {
-        application.mostrarVentanaLogin();
+        application.mostrarCatalogo(cliente);
     }
 
     public void setApplication(Application application, Cliente cliente) {

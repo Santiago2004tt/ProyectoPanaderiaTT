@@ -28,6 +28,14 @@ public class Pastel implements Serializable {
         listaPisoPasteles = new ArrayList<>();
     }
 
+    public Pastel(SaborRelleno saborRelleno, TipoTorta tipoTorta, SaborBizcocho saborBizcocho, Forma forma) {
+        this.saborRelleno = saborRelleno;
+        this.tipoTorta = tipoTorta;
+        this.saborBizcocho = saborBizcocho;
+        this.forma = forma;
+        listaPisoPasteles = new ArrayList<>();
+    }
+
     public Pastel() {
         listaPisoPasteles = new ArrayList<>();
     }

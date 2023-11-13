@@ -2,6 +2,8 @@ package com.proyect.proyectopanaderiatt.Application;
 
 import com.proyect.proyectopanaderiatt.controllers.*;
 import com.proyect.proyectopanaderiatt.model.Cliente;
+import com.proyect.proyectopanaderiatt.model.Pastel;
+import com.proyect.proyectopanaderiatt.model.Pedido;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -13,7 +15,7 @@ public class Application extends javafx.application.Application {
 
     Stage stage;
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         this.stage = stage;
         mostrarVentanaLogin();
     }
@@ -89,7 +91,7 @@ public class Application extends javafx.application.Application {
             throw new RuntimeException(e);
         }
     }
-    public void mostrarMenuDisenio(Cliente cliente){
+    public void mostrarMenuDisenio(Cliente cliente, Pastel pastel){
         try {
             stage.close();
             stage = new Stage();
@@ -97,6 +99,40 @@ public class Application extends javafx.application.Application {
             loader.setLocation(Application.class.getResource("/views/menu-disenio.fxml"));
             AnchorPane rootLayout = loader.load();
             MenuDisenioController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente, pastel);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarRecuperarContrasenia(){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/recuperar-contrasenia.fxml"));
+            AnchorPane rootLayout = loader.load();
+            RecuperarContraseniaController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarCatalogo(Cliente cliente){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/catalogo.fxml"));
+            AnchorPane rootLayout = loader.load();
+            CatalogoController controller = loader.getController();//Obtenemos el controlador
             controller.setApplication(this, cliente);
             Scene scene = new Scene(rootLayout);
             stage.setScene(scene);
@@ -106,15 +142,15 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostarRecuperarContrasenia(){
+    public void mostrarFactura(Cliente cliente, Pedido pedido){
         try {
             stage.close();
             stage = new Stage();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Application.class.getResource("/views/recuperar-contrasenia.fxml"));
+            loader.setLocation(Application.class.getResource("/views/factura.fxml"));
             AnchorPane rootLayout = loader.load();
-            RecuperarContraseniaController controller = loader.getController();//Obtenemos el controlador
-            controller.setApplication(this);
+            FacturaController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente, pedido);
             Scene scene = new Scene(rootLayout);
             stage.setScene(scene);
             stage.show();

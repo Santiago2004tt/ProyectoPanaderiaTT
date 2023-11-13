@@ -7,6 +7,7 @@ import com.proyect.proyectopanaderiatt.Exceptions.PedidoException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,6 +23,11 @@ public class Panaderia implements Serializable {
     private ArrayList<Empleado> listaEmpleados;
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Pedido> listaPedidos;
+    private ArrayList<Pastel> listaPasteles;
+    HashMap<TipoTorta, Double> precioTipoTorta;
+    HashMap<SaborBizcocho, Double> precioSaborBizcocho;
+    HashMap<SaborRelleno, Double> precioSaborRelleno;
+    HashMap<Tamano, Double> precioPisos;
     private static final long serialVersioUID = 1L;
 
     public Panaderia(String id, String ubicacion, String horario, String correoElectronico, double calificacion, String nombre) {
@@ -34,12 +40,24 @@ public class Panaderia implements Serializable {
         listaClientes = new ArrayList<>();
         listaEmpleados = new ArrayList<>();
         listaPedidos = new ArrayList<>();
+        listaPasteles = new ArrayList<>();
+        precioTipoTorta = new HashMap<>();
+        precioSaborBizcocho = new HashMap<>();
+        precioSaborRelleno = new HashMap<>();
+        precioPisos = new HashMap<>();
+        llenarPrecios();
     }
 
     public Panaderia() {
         listaClientes = new ArrayList<>();
         listaEmpleados = new ArrayList<>();
         listaPedidos = new ArrayList<>();
+        listaPasteles = new ArrayList<>();
+        precioTipoTorta = new HashMap<>();
+        precioSaborBizcocho = new HashMap<>();
+        precioSaborRelleno = new HashMap<>();
+        precioPisos = new HashMap<>();
+        llenarPrecios();
     }
 
     public String getId() {
@@ -114,7 +132,45 @@ public class Panaderia implements Serializable {
         this.listaPedidos = listaPedidos;
     }
 
+    public ArrayList<Pastel> getListaPasteles() {
+        return listaPasteles;
+    }
 
+    public void setListaPasteles(ArrayList<Pastel> listaPasteles) {
+        this.listaPasteles = listaPasteles;
+    }
+
+    public HashMap<TipoTorta, Double> getPrecioTipoTorta() {
+        return precioTipoTorta;
+    }
+
+    public void setPrecioTipoTorta(HashMap<TipoTorta, Double> precioTipoTorta) {
+        this.precioTipoTorta = precioTipoTorta;
+    }
+
+    public HashMap<SaborBizcocho, Double> getPrecioSaborBizcocho() {
+        return precioSaborBizcocho;
+    }
+
+    public void setPrecioSaborBizcocho(HashMap<SaborBizcocho, Double> precioSaborBizcocho) {
+        this.precioSaborBizcocho = precioSaborBizcocho;
+    }
+
+    public HashMap<SaborRelleno, Double> getPrecioSaborRelleno() {
+        return precioSaborRelleno;
+    }
+
+    public void setPrecioSaborRelleno(HashMap<SaborRelleno, Double> precioSaborRelleno) {
+        this.precioSaborRelleno = precioSaborRelleno;
+    }
+
+    public HashMap<Tamano, Double> getPrecioPisos() {
+        return precioPisos;
+    }
+
+    public void setPrecioPisos(HashMap<Tamano, Double> precioPisos) {
+        this.precioPisos = precioPisos;
+    }
     //Crud de cliente
 
     /**
@@ -471,5 +527,32 @@ public class Panaderia implements Serializable {
             return true;
         }
         return false;
+    }
+
+    public void llenarPrecios() {
+        precioTipoTorta.put(TipoTorta.CREMA, 3000.0);
+        precioTipoTorta.put(TipoTorta.PASTILLAJE, 4000.0);
+
+        // HashMap para SaborBizcocho
+        precioSaborBizcocho.put(SaborBizcocho.MARIA_LUISA, 50000.0);
+        precioSaborBizcocho.put(SaborBizcocho.TENTACION_DE_CHOCOLATE, 60000.0);
+        precioSaborBizcocho.put(SaborBizcocho.REVELDE, 20000.0);
+        precioSaborBizcocho.put(SaborBizcocho.TORTA_FRIA, 35000.0);
+        precioSaborBizcocho.put(SaborBizcocho.ENVINADA, 30000.0);
+
+        // HashMap para SaborRelleno
+        precioSaborRelleno.put(SaborRelleno.FRESA, 1000.0);
+        precioSaborRelleno.put(SaborRelleno.MORA, 1000.0);
+        precioSaborRelleno.put(SaborRelleno.AREQUIPE, 1500.0);
+        precioSaborRelleno.put(SaborRelleno.FRUTOS_ROJOS, 2000.0);
+        precioSaborRelleno.put(SaborRelleno.MILO, 4000.0);
+        precioSaborRelleno.put(SaborRelleno.CHOCOLATE, 6000.0);
+        precioSaborRelleno.put(SaborRelleno.TRES_LECHES, 6500.0);
+
+        precioPisos.put(Tamano.unCuarto, 10000.0);
+        precioPisos.put(Tamano.unMedio, 15000.0);
+        precioPisos.put(Tamano.tresCuartos, 20000.0);
+        precioPisos.put(Tamano.uno, 25000.0);
+        precioPisos.put(Tamano.dos, 30000.0);
     }
 }

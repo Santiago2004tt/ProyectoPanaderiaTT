@@ -16,6 +16,12 @@ public class PisoPastel implements Serializable {
         this.pastel = pastel;
     }
 
+    public PisoPastel(Tamano tamano, int numeroPiso, Pastel pastel) {
+        this.tamano = tamano;
+        this.numeroPiso = numeroPiso;
+        this.pastel = pastel;
+    }
+
     public PisoPastel() {
     }
 

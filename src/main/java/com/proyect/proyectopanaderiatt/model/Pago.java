@@ -30,6 +30,19 @@ public class Pago implements Serializable {
         this.pedido = pedido;
     }
 
+    public Pago(double valorPago, EstadoPago estadoPago, String numeroTarjeta, String fechaVencimiento,
+                String codigoSeguridad, String nombreBanco, MetodoAutorizacion metodoAutorizacion, Cliente cliente, Pedido pedido) {
+        this.valorPago = valorPago;
+        this.estadoPago = estadoPago;
+        this.numeroTarjeta = numeroTarjeta;
+        this.fechaVencimiento = fechaVencimiento;
+        this.codigoSeguridad = codigoSeguridad;
+        this.nombreBanco = nombreBanco;
+        this.metodoAutorizacion = metodoAutorizacion;
+        this.cliente = cliente;
+        this.pedido = pedido;
+    }
+
     public Pago() {
     }
 

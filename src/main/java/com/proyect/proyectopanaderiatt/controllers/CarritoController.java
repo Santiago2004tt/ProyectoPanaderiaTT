@@ -44,7 +44,7 @@ public class CarritoController {
 
     @FXML
     void realizarCompraAction(ActionEvent event) {
-
+        application.mostrarDireccionEnvio(cliente, cliente.getCarrito());
     }
 
     @FXML
@@ -75,9 +75,9 @@ public class CarritoController {
     }
 
     private void llenarFichaTotal(Pedido pedido) {
-        lblPasteles.setText(String.format("Pasteles (%s): %s", pedido.getListaDetallesPedido().size(), pedido.getTotal()));
-        lblEnvio.setText("Envio: " + 10000);
-        lblTotal.setText("Total: " + (pedido.getTotal() + 10000));
+        lblPasteles.setText(String.format("Pasteles (%s): %s$", pedido.getListaDetallesPedido().size(), pedido.getTotal()));
+        lblEnvio.setText("Envio: " + 10000 + "$");
+        lblTotal.setText("Total: " + (pedido.getTotal() + 10000) + "$");
     }
 
     private HBox filaCarrito(DetallePedido detallePedido) {

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyect.proyectopanaderiatt.controllers.PagoPedidoController">
+   <children>
+      <Label id="title" layoutX="235.0" layoutY="14.0" text="Realizar pago" />
+      <Button id="buttonBack" fx:id="btnRegresar" layoutX="14.0" layoutY="7.0" mnemonicParsing="false" onAction="#regresarAction" text="Regresar" />
+      <Button id="buttonNormal" fx:id="btnRealizarPago" layoutX="252.0" layoutY="362.0" mnemonicParsing="false" onAction="#realizarPagoAction" text="Realizar Pago" />
+      <GridPane layoutX="174.0" layoutY="145.0" prefHeight="177.0" prefWidth="250.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="tfNumeroTarjeta" onKeyReleased="#numeroTarjetaReleased" GridPane.columnIndex="1" />
+            <Label id="text" text="Numero tarjeta" />
+            <Label id="text" text="Fecha vencimiento" GridPane.rowIndex="1" />
+            <Label id="text" text="Codigo seguridad" GridPane.rowIndex="2" />
+            <Label id="text" text="Nombre banco" GridPane.rowIndex="3" />
+            <Label id="text" text="Tipo tajeta" GridPane.rowIndex="4" />
+            <TextField fx:id="tfFechaVencimiento" onKeyReleased="#fechaVencimientoReleased" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfNombreBanco" onKeyReleased="#nombreBancoReleased" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cbTipoTarjeta" onKeyReleased="#tipoTarjetaReleased" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <PasswordField fx:id="pfCodigoSeguridad" onKeyReleased="#codigoSeguridadReleased" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label id="text" text="Valor pago" GridPane.rowIndex="5" />
+            <ComboBox fx:id="cbValorPago" onKeyReleased="#tipoTarjetaReleased" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         </children>
+      </GridPane>
+      <Label id="text" fx:id="lblTotalPagar" layoutX="175.0" layoutY="111.0" text="Total a pagar: 0" />
+   </children>
+</AnchorPane>

@@ -134,7 +134,6 @@ public class CatalogoController {
             imageView.setFitHeight(150);
             imageView.setFitWidth(150);
             contenedor.getChildren().add(imageView);
-            contenedor.getChildren().add(new Text(++i + ""));
             contenedor.getChildren().add(new Text(pastel.getDescripcion()));
             vBoxes.add(contenedor);
         }

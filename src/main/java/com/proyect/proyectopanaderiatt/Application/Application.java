@@ -194,6 +194,40 @@ public class Application extends javafx.application.Application {
         }
     }
 
+    public void mostrarDireccionEnvio(Cliente cliente, Pedido pedido){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/direccion-envio.fxml"));
+            AnchorPane rootLayout = loader.load();
+            DireccionEnvioController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente, pedido);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarPagoPedido(Cliente cliente, Pedido pedido){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/pago-pedido.fxml"));
+            AnchorPane rootLayout = loader.load();
+            PagoPedidoController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente, pedido);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public static void main(String[] args) {
         launch();

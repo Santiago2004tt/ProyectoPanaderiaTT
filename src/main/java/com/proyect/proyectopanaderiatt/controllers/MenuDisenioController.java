@@ -226,6 +226,12 @@ public class MenuDisenioController {
         cbSaborRelleno.getItems().setAll(SaborRelleno.values());
         cbFormaPastel.getItems().setAll(Forma.values());
 
+        cbTipoTorta.setPromptText("Seleccionar");
+        cbSaborBizcocho.setPromptText("Seleccionar");
+        cbSaborRelleno.setPromptText("Seleccionar");
+        cbFormaPastel.setPromptText("Seleccionar");
+
+
         tblPisos.setItems(getTamanoData());
 
         colTamanio.setCellValueFactory(new PropertyValueFactory<>("valor"));
@@ -352,6 +358,14 @@ public class MenuDisenioController {
 
         String descripcion = taDescripcion.getText();
         Image image = ivImagen.getImage();
+
+        if (tipoTorta == null && saborBizcocho == null && saborRelleno == null && forma == null && seleccion.isEmpty() &&
+                descripcion.isEmpty() && image == null) {
+            cliente.setRespaldoPastel(null);
+            modelFactoryController.iniciarSalvarDatosPrueba();
+            return;
+        }
+
 
         Pastel pastel = capturarPastel(saborRelleno, tipoTorta, saborBizcocho, forma, descripcion, image, seleccion);
 

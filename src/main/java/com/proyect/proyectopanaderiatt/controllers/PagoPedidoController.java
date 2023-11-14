@@ -4,6 +4,7 @@ import com.proyect.proyectopanaderiatt.Application.Application;
 import com.proyect.proyectopanaderiatt.Exceptions.PedidoException;
 import com.proyect.proyectopanaderiatt.Exceptions.ValorRequeridoException;
 import com.proyect.proyectopanaderiatt.model.*;
+import com.proyect.proyectopanaderiatt.util.BodyEmailUtil;
 import com.proyect.proyectopanaderiatt.util.MensajeUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -105,13 +106,34 @@ public class PagoPedidoController {
         Pago pago = new Pago(monto, EstadoPago.COMPLETADO, numeroTarjeta, fechaVencimiento, codigoSeguridad, nombreBanco, metodoAutorizacion, cliente, pedido);
 
         try {
+            pedido.setId(String.valueOf(panaderia.getListaPedidos().size() + 1));
             panaderia.crearPedido(pedido);
             cliente.getListaPedidos().add(pedido);
             pedido.setPago(pago);
+            cliente.setCarrito(null);
+
+            String mensaje = BodyEmailUtil.emailPedido(cliente.getNombre() + " " + cliente.getApellido(), generarMensajeEmail());
+
+            modelFactoryController.enviarEmail(cliente.getEmail(), "Gracias por su pedido", mensaje);
+
             modelFactoryController.iniciarSalvarDatosPrueba();
+
+            application.mostrarCatalogo(cliente);
         } catch (PedidoException e) {
             MensajeUtil.mensajeAlerta("Alerta", e.getMessage());
         }
+    }
+
+
+    private String generarMensajeEmail() {
+        String mensaje = "";
+        int contador = 0;
+
+        for (DetallePedido detallePedido : pedido.getListaDetallesPedido()) {
+            Pastel pastel = detallePedido.getPastel();
+            mensaje += BodyEmailUtil.pastel(++contador, pastel.getTipoTorta(), pastel.getSaborBizcocho(), pastel.getSaborRelleno(), pastel.getForma());
+        }
+        return mensaje;
     }
 
     @FXML

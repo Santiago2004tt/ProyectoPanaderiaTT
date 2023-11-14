@@ -5,6 +5,7 @@ import com.proyect.proyectopanaderiatt.model.Cliente;
 import com.proyect.proyectopanaderiatt.model.DetallePedido;
 import com.proyect.proyectopanaderiatt.model.Pastel;
 import com.proyect.proyectopanaderiatt.model.Pedido;
+import com.proyect.proyectopanaderiatt.util.MensajeUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -44,6 +45,10 @@ public class CarritoController {
 
     @FXML
     void realizarCompraAction(ActionEvent event) {
+        if (cliente.getCarrito() == null) {
+            MensajeUtil.mensajeAlerta("Alerta", "El carrito esta vacio");
+            return;
+        }
         application.mostrarDireccionEnvio(cliente, cliente.getCarrito());
     }
 

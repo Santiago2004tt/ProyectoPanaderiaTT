@@ -401,9 +401,10 @@ public class Panaderia implements Serializable {
         Iterator<Pedido> iterator = getListaPedidos().iterator();
         while (iterator.hasNext()){
             Pedido pedido = iterator.next();
-            if(pedido.getId().equals(id)){
-                return false;
-            }
+            System.out.println(pedido.getId());
+//            if(pedido.getId().equals(id)){
+//                return false;
+//            }
         }
         return true;
     }

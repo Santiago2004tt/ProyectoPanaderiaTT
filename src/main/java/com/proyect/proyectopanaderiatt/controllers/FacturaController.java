@@ -47,7 +47,7 @@ public class FacturaController {
 
     @FXML
     void pagarAction(ActionEvent event) {
-
+        application.mostrarDireccionEnvio(cliente, pedido);
     }
 
     @FXML

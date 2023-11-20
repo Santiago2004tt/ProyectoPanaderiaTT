@@ -2,8 +2,6 @@ package com.proyect.proyectopanaderiatt.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Cliente extends Persona implements Serializable {
 
@@ -14,6 +12,7 @@ public class Cliente extends Persona implements Serializable {
     private Pastel respaldoPastel;
     private ArrayList<Pedido> listaPedidos;
     private ArrayList<Pago> listaPagos;
+    private ArrayList<PQRS> listaPQRS;
     private static final long serialVersioUID = 1L;
 
     public Cliente(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String identificacion, Cuenta cuenta, double nivelLealtad, String ocupacion, String foto) {
@@ -21,11 +20,15 @@ public class Cliente extends Persona implements Serializable {
         this.nivelLealtad = 0;
         this.ocupacion = ocupacion;
         this.foto = foto;
+        listaPedidos = new ArrayList<>();
+        listaPagos = new ArrayList<>();
+        listaPQRS = new ArrayList<>();
     }
 
     public Cliente() {
         listaPedidos = new ArrayList<>();
         listaPagos = new ArrayList<>();
+        listaPQRS = new ArrayList<>();
     }
 
     public String getFoto() {

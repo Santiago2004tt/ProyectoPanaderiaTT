@@ -58,9 +58,7 @@ public class IniciarSecionController {
                 cedula = modelFactoryController.verificarUsuarioContrasena(usuario, contrasena);
                 Cliente cliente = modelFactoryController.buscarCliente(cedula);
                 application.mostrarCatalogoConVerificacion(cliente);
-            } catch (CuentaException e){
-                MensajeUtil.mensajeAlerta("Error", e.getMessage());
-            }catch (ClienteException e){
+            } catch (CuentaException | ClienteException e){
                 MensajeUtil.mensajeAlerta("Error", e.getMessage());
             }
         }else {

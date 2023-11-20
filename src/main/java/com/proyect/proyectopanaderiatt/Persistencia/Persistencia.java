@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Persistencia {
-    public static final String RUTA_ARCHIVO_MODELO_PANADERIA_BINARIO = "C:\\td\\persistencia/Model.dat";
-    public static final String RUTA_ARCHIVO_MODELO_PANADERIA_XML = "C:\\td\\persistencia/Encript.xml";
-    public static final String RUTA_ARCHIVO_CREDENCIALES = "C:\\td\\persistencia/credenciales.txt";
+    public static final String RUTA_ARCHIVO_MODELO_PANADERIA_BINARIO = "C:\\td\\persistencia_panaderiatt/Model.dat";
+    public static final String RUTA_ARCHIVO_MODELO_PANADERIA_XML = "C:\\td\\persistencia_panaderiatt/Encript.xml";
+    public static final String RUTA_ARCHIVO_CREDENCIALES = "C:\\td\\persistencia_panaderiatt/credenciales.txt";
 
 
     public static Panaderia cargarRecursoXML() {

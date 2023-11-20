@@ -118,7 +118,7 @@ public class RegistroClienteController {
         String direccion = tfDireccion.getText();
         if(verificarEspacios(nombre,apellido,cedula,telefono,email,direccion)){
             if (verificarCorreo(email) && verificarCedula(cedula) && verificarTelefono(telefono)){
-                if(modelFactoryController.verificarExisteCliente(cedula)){
+                if (modelFactoryController.verificarExisteCliente(cedula)) {
                     cliente.setNombre(nombre);
                     cliente.setApellido(apellido);
                     cliente.setCedula(cedula);
@@ -127,6 +127,8 @@ public class RegistroClienteController {
                     cliente.setDireccion(direccion);
                     cliente.setFoto(imageAux.getUrl());
                     application.mostrarCrearCuenta(cliente);
+                } else {
+                    MensajeUtil.mensajeAlerta("Alerta", "El cliente ya existe");
                 }
             }
         }else{

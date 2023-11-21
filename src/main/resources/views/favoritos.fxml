@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyect.proyectopanaderiatt.controllers.FavoritosController">
+   <children>
+      <TableView fx:id="tblPastel" layoutX="271.0" layoutY="28.0" prefHeight="342.0" prefWidth="296.0">
+        <columns>
+          <TableColumn fx:id="colTipoPastel" prefWidth="110.0" text="Tipo pastel" />
+          <TableColumn fx:id="colSaborRelleno" prefWidth="84.0" text="Sabor relleno" />
+            <TableColumn fx:id="colSaborBizcocho" prefWidth="101.0" text="Sabor bizcocho" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="40.0" layoutY="106.0" prefHeight="191.0" prefWidth="207.0" style="-fx-background-color: #b6b6b6;">
+         <children>
+            <ImageView fx:id="iviImagen" fitHeight="200.0" fitWidth="210.0" layoutX="-1.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnSalir" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#salir" prefHeight="25.0" prefWidth="65.0" text="Salir" />
+   </children>
+</AnchorPane>

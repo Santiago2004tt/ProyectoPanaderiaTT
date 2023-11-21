@@ -1,5 +1,7 @@
 package com.proyect.proyectopanaderiatt.model;
 
+import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,6 +14,7 @@ public class Cliente extends Persona implements Serializable {
     private Pastel respaldoPastel;
     private ArrayList<Pedido> listaPedidos;
     private ArrayList<Pago> listaPagos;
+    private ArrayList<Pastel> listaFavoritos;
     private ArrayList<PQRS> listaPQRS;
     private static final long serialVersioUID = 1L;
 
@@ -23,12 +26,14 @@ public class Cliente extends Persona implements Serializable {
         listaPedidos = new ArrayList<>();
         listaPagos = new ArrayList<>();
         listaPQRS = new ArrayList<>();
+        listaFavoritos = new ArrayList<>();
     }
 
     public Cliente() {
         listaPedidos = new ArrayList<>();
         listaPagos = new ArrayList<>();
         listaPQRS = new ArrayList<>();
+        listaFavoritos = new ArrayList<>();
     }
 
     public String getFoto() {
@@ -69,6 +74,22 @@ public class Cliente extends Persona implements Serializable {
 
     public void setListaPagos(ArrayList<Pago> listaPagos) {
         this.listaPagos = listaPagos;
+    }
+
+    public ArrayList<Pastel> getListaFavoritos() {
+        return listaFavoritos;
+    }
+
+    public void setListaFavoritos(ArrayList<Pastel> listaFavoritos) {
+        this.listaFavoritos = listaFavoritos;
+    }
+
+    public ArrayList<PQRS> getListaPQRS() {
+        return listaPQRS;
+    }
+
+    public void setListaPQRS(ArrayList<PQRS> listaPQRS) {
+        this.listaPQRS = listaPQRS;
     }
 
     public Pedido getCarrito() {
@@ -129,5 +150,21 @@ public class Cliente extends Persona implements Serializable {
         }
         carrito.agregarDetallePedido(detallePedido);
         detallePedido.setPedido(carrito);
+    }
+
+    public void agregarFavorito(Pastel pastel)throws ClienteException {
+        if(!verificarPastelFavorito(pastel)){
+            getListaFavoritos().add(pastel);
+        }
+        throw new ClienteException("El pastel ya existe");
+    }
+
+    private boolean verificarPastelFavorito(Pastel pastel) {
+        for (Pastel pastel1: getListaFavoritos()) {
+            if(pastel==pastel1){
+                return true;
+            }
+        }
+        return false;
     }
 }

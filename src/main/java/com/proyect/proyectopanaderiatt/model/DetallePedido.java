@@ -79,7 +79,7 @@ public class DetallePedido implements Serializable {
             subTotal += 15000;
         }
         for (PisoPastel pisoPastel : pastel.getListaPisoPasteles()) {
-            subTotal += panaderia.precioPisos.get(pisoPastel.getTamano());
+            subTotal += panaderia.getPrecioPisos().get(pisoPastel.getTamano());
         }
     }
 }

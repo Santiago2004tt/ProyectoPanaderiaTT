@@ -1,6 +1,7 @@
 package com.proyect.proyectopanaderiatt.controllers;
 import com.proyect.proyectopanaderiatt.Application.Application;
 import com.proyect.proyectopanaderiatt.model.*;
+import com.proyect.proyectopanaderiatt.util.MensajeUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,6 +44,21 @@ public class FavoritosController {
         application.mostrarPerfil(cliente);
     }
 
+    @FXML
+    void eliminarFavoritos(ActionEvent event) {
+        eliminarFavoritosAction();
+    }
+
+    private void eliminarFavoritosAction() {
+        if(pastelSeleccionado!=null){
+            cliente.eliminarFavorito(pastelSeleccionado);
+            actualizarTabla();
+            modelFactoryController.iniciarSalvarDatosPrueba();
+        }else{
+            MensajeUtil.mensajeAlerta("Error","Seleccione un pastel");
+        }
+    }
+
     public void setApplication(Application application, Cliente cliente) {
         this.application=application;
         this.cliente = cliente;
@@ -67,8 +83,10 @@ public class FavoritosController {
     }
 
     private void mostrarInfo() {
-        Image image = new Image(pastelSeleccionado.getImagen());
-        iviImagen.setImage(image);
+        if (pastelSeleccionado != null) {
+            Image image = new Image(pastelSeleccionado.getImagen());
+            iviImagen.setImage(image);
+        }
     }
 
     @FXML

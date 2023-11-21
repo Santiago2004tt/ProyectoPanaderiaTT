@@ -232,6 +232,40 @@ public class Application extends javafx.application.Application {
         }
     }
 
+    public void mostrarHistorialDevoluciones(Cliente cliente) {
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/historial-devoluciones.fxml"));
+            AnchorPane rootLayout = loader.load();
+            HistorialDevolucionesController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarCrearDevolucion(Cliente cliente) {
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/devolucion.fxml"));
+            AnchorPane rootLayout = loader.load();
+            DevolucionController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void mostrarHistorial(Cliente cliente) {
         try {
             stage.close();
@@ -326,6 +360,23 @@ public class Application extends javafx.application.Application {
             loader.setLocation(Application.class.getResource("/views/favoritos.fxml"));
             AnchorPane rootLayout = loader.load();
             FavoritosController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarDevolucion(Cliente cliente) {
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/devolucion.fxml"));
+            AnchorPane rootLayout = loader.load();
+            DevolucionController controller = loader.getController();//Obtenemos el controlador
             controller.setApplication(this, cliente);
             Scene scene = new Scene(rootLayout);
             stage.setScene(scene);

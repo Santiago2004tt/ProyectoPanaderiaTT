@@ -75,6 +75,28 @@
     -fx-pref-width: 40;
     -fx-cursor: hand;
 }
+#buttonLike {
+    -fx-background-color: transparent;
+    -fx-background-image: url('../images/pulgarArriba.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-text-fill: transparent;
+    -fx-pref-height: 40;
+    -fx-pref-width: 40;
+    -fx-cursor: hand;
+}
+#buttonLikeCheck {
+    -fx-background-color: transparent;
+    -fx-background-image: url('../images/pulgarArribaMarcado.png');
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-text-fill: transparent;
+    -fx-pref-height: 40;
+    -fx-pref-width: 40;
+    -fx-cursor: hand;
+}
 #buttonCar {
     -fx-background-color: transparent;
     -fx-background-image: url('../images/car.png');
@@ -102,6 +124,9 @@
 }
 #fondoTabla .table-row-cell, .table-view {
     -fx-background-color: #bac6d2;
+    -fx-control-inner-background: #bac6d2
+;
+
 }
 #scroll .viewport,
 #scroll {

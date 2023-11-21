@@ -61,6 +61,11 @@ public class CatalogoController {
     }
 
     @FXML
+    void devolucionesAction() {
+        application.mostrarCrearDevolucion(cliente);
+    }
+
+    @FXML
     void derechaAction(ActionEvent event) {
         moveRight();
     }
@@ -141,7 +146,7 @@ public class CatalogoController {
             VBox contenedor = new VBox();
             contenedor.setAlignment(Pos.CENTER);
             contenedor.setStyle("-fx-background-color: lightblue");
-            contenedor.setOnMouseClicked(x -> pedirFavorito(pastel));
+            contenedor.setOnMouseClicked(x -> application.mostrarMenuDisenio(cliente, pastel));
             contenedor.setCursor(Cursor.HAND);
 
             Image image = new Image(pastel.getImagen());
@@ -180,7 +185,7 @@ public class CatalogoController {
         // Determinar el resultado basado en la opción seleccionada por el usuario
         boolean res = resultado.isPresent() && resultado.get() == buttonTypeSi;
 
-        if(res == true){
+        if(res){
             try {
                 cliente.agregarFavorito(pastel);
             }catch (ClienteException e){

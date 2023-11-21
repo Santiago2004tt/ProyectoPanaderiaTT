@@ -22,6 +22,9 @@ public class PerfilClienteController {
     private ImageView ivFotoPerfil;
 
     @FXML
+    private Button btnHistorialDevoluciones;
+
+    @FXML
     private Button btnHistorialPedidos;
 
     @FXML
@@ -58,6 +61,10 @@ public class PerfilClienteController {
         application.mostrarFavoritos(cliente);
     }
 
+    @FXML
+    void historialDevolucionesAction() {
+        application.mostrarHistorialDevoluciones(cliente);
+    }
     @FXML
     void historialPedidosAction(ActionEvent event) {
         application.mostrarHistorial(cliente);

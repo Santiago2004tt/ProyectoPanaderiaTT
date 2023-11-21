@@ -21,11 +21,12 @@ public class Panaderia implements Serializable {
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Pedido> listaPedidos;
     private ArrayList<Pastel> listaPasteles;
-    HashMap<TipoTorta, Double> precioTipoTorta;
-    HashMap<SaborBizcocho, Double> precioSaborBizcocho;
-    HashMap<SaborRelleno, Double> precioSaborRelleno;
-    HashMap<Tamano, Double> precioPisos;
-    ArrayList<PQRS> listaPQRS;
+    private HashMap<TipoTorta, Double> precioTipoTorta;
+    private HashMap<SaborBizcocho, Double> precioSaborBizcocho;
+    private HashMap<SaborRelleno, Double> precioSaborRelleno;
+    private HashMap<Tamano, Double> precioPisos;
+    private ArrayList<PQRS> listaPQRS;
+    private ArrayList<Devolucion> listaDevoluciones;
     private static final long serialVersioUID = 1L;
 
     public Panaderia(String id, String ubicacion, String horario, String correoElectronico, double calificacion, String nombre) {
@@ -44,6 +45,7 @@ public class Panaderia implements Serializable {
         precioSaborRelleno = new HashMap<>();
         precioPisos = new HashMap<>();
         listaPQRS = new ArrayList<>();
+        listaDevoluciones = new ArrayList<>();
         llenarPrecios();
     }
 
@@ -57,6 +59,7 @@ public class Panaderia implements Serializable {
         precioSaborRelleno = new HashMap<>();
         precioPisos = new HashMap<>();
         listaPQRS = new ArrayList<>();
+        listaDevoluciones = new ArrayList<>();
         llenarPrecios();
     }
 
@@ -120,6 +123,8 @@ public class Panaderia implements Serializable {
         return listaClientes;
     }
 
+
+
     public void setListaClientes(ArrayList<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
@@ -171,7 +176,40 @@ public class Panaderia implements Serializable {
     public void setPrecioPisos(HashMap<Tamano, Double> precioPisos) {
         this.precioPisos = precioPisos;
     }
-    //Crud PQRS
+
+    public ArrayList<PQRS> getListaPQRS() {
+        return listaPQRS;
+    }
+
+    public void setListaPQRS(ArrayList<PQRS> listaPQRS) {
+        this.listaPQRS = listaPQRS;
+    }
+
+    public ArrayList<Devolucion> getListaDevoluciones() {
+        return listaDevoluciones;
+    }
+
+    public void setListaDevoluciones(ArrayList<Devolucion> listaDevoluciones) {
+        this.listaDevoluciones = listaDevoluciones;
+    }
+
+    //Crud devolucion
+    public Devolucion crearDevolucion(String fechaDevolucion, String motivoDevolucion, Cliente cliente) {
+        String id = String.valueOf(listaDevoluciones.size());
+        Devolucion devolucion = new Devolucion();
+
+        devolucion.setFechaDevolucion(fechaDevolucion);
+        devolucion.setMotivoDevolucion(motivoDevolucion);
+        devolucion.setCliente(cliente);
+        devolucion.setEstadoDevolucion(ESTADO_DEVOLUCION.EN_REVISION);
+
+        cliente.getListaDevolucion().add(devolucion);
+        listaDevoluciones.add(devolucion);
+
+        return devolucion;
+    }
+
+//Crud PQRS
 
     /**
      * Crea una pqrs
@@ -469,7 +507,6 @@ public class Panaderia implements Serializable {
         Iterator<Pedido> iterator = getListaPedidos().iterator();
         while (iterator.hasNext()){
             Pedido pedido = iterator.next();
-            System.out.println(pedido.getId());
 //            if(pedido.getId().equals(id)){
 //                return false;
 //            }

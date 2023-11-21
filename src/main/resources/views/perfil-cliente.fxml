@@ -38,5 +38,6 @@
       <ImageView fx:id="ivFotoPerfil" fitHeight="150.0" fitWidth="200.0" layoutX="359.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
       <Button id="button" fx:id="btnHistorialPqrs" layoutX="309.0" layoutY="323.0" mnemonicParsing="false" onAction="#historialPqrsAction" text="Historial PQRS" />
       <Button id="button" fx:id="btnFavoritos" layoutX="160.0" layoutY="323.0" mnemonicParsing="false" onAction="#favoritos" text="Favoritos" />
+      <Button id="buttonNormal" fx:id="btnHistorialDevoluciones" layoutX="224.0" layoutY="233.0" mnemonicParsing="false" onAction="#historialDevolucionesAction" prefWidth="156.0" text="Historial Devoluciones" />
    </children>
 </AnchorPane>

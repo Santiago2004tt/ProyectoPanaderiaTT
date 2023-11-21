@@ -16,6 +16,7 @@ public class Cliente extends Persona implements Serializable {
     private ArrayList<Pago> listaPagos;
     private ArrayList<Pastel> listaFavoritos;
     private ArrayList<PQRS> listaPQRS;
+    private ArrayList<Devolucion> listaDevolucion;
     private static final long serialVersioUID = 1L;
 
     public Cliente(String nombre, String apellido, String cedula, String telefono, String email, String direccion, String identificacion, Cuenta cuenta, double nivelLealtad, String ocupacion, String foto) {
@@ -27,6 +28,7 @@ public class Cliente extends Persona implements Serializable {
         listaPagos = new ArrayList<>();
         listaPQRS = new ArrayList<>();
         listaFavoritos = new ArrayList<>();
+        listaDevolucion = new ArrayList<>();
     }
 
     public Cliente() {
@@ -34,6 +36,7 @@ public class Cliente extends Persona implements Serializable {
         listaPagos = new ArrayList<>();
         listaPQRS = new ArrayList<>();
         listaFavoritos = new ArrayList<>();
+        listaDevolucion = new ArrayList<>();
     }
 
     public String getFoto() {
@@ -108,6 +111,14 @@ public class Cliente extends Persona implements Serializable {
         this.listaPQRS = listaPQRS;
     }
 
+    public ArrayList<Devolucion> getListaDevolucion() {
+        return listaDevolucion;
+    }
+
+    public void setListaDevolucion(ArrayList<Devolucion> listaDevolucion) {
+        this.listaDevolucion = listaDevolucion;
+    }
+
     /**
      * metodo que verifica si existe el usuario o no
      * @param usuario
@@ -155,8 +166,10 @@ public class Cliente extends Persona implements Serializable {
     public void agregarFavorito(Pastel pastel)throws ClienteException {
         if(!verificarPastelFavorito(pastel)){
             getListaFavoritos().add(pastel);
+
+        }else{
+            throw new ClienteException("El pastel ya existe");
         }
-        throw new ClienteException("El pastel ya existe");
     }
 
     private boolean verificarPastelFavorito(Pastel pastel) {
@@ -166,5 +179,11 @@ public class Cliente extends Persona implements Serializable {
             }
         }
         return false;
+    }
+
+    public void eliminarFavorito(Pastel pastelSeleccionado) {
+        if(verificarPastelFavorito(pastelSeleccionado)){
+            getListaFavoritos().remove(pastelSeleccionado);
+        }
     }
 }

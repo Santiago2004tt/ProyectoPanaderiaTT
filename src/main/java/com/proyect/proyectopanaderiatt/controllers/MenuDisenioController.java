@@ -1,6 +1,7 @@
 package com.proyect.proyectopanaderiatt.controllers;
 
 import com.proyect.proyectopanaderiatt.Application.Application;
+import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
 import com.proyect.proyectopanaderiatt.Exceptions.PedidoException;
 import com.proyect.proyectopanaderiatt.model.*;
 import com.proyect.proyectopanaderiatt.util.MensajeUtil;
@@ -17,6 +18,7 @@ import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +36,9 @@ public class MenuDisenioController {
 
     @FXML
     private Button btnComprar;
+
+    @FXML
+    private Button btnLike;
 
     @FXML
     private Button btnRegresar;
@@ -99,6 +104,35 @@ public class MenuDisenioController {
         }
     }
 
+    @FXML
+    void likeAction() {
+        try {
+            like();
+        } catch (PedidoException | ClienteException e) {
+            MensajeUtil.mensajeAlerta("Error", e.getMessage());
+        }
+    }
+
+    void like() throws PedidoException, ClienteException {
+        TipoTorta tipoTorta = cbTipoTorta.getValue();
+        SaborBizcocho saborBizcocho = cbSaborBizcocho.getValue();
+        SaborRelleno saborRelleno = cbSaborRelleno.getValue();
+        Forma forma = cbFormaPastel.getValue();
+        String descripcion = taDescripcion.getText();
+        Image image = ivImagen.getImage();
+        ArrayList<Tamano> seleccion = tomarSeleccionados();
+        if (verificar()) {
+            if (saborBizcocho == SaborBizcocho.TORTA_FRIA && seleccion.size() > 2)
+                throw new PedidoException("La cantidad de pisos para el sabor de bizcocho de torta fria no puede ser mayor a 2");
+
+            if (pastel == null) {
+                pastel = capturarPastel(saborRelleno, tipoTorta, saborBizcocho, forma, descripcion, image, seleccion);
+            }
+            cliente.agregarFavorito(pastel);
+            btnLike.setId("buttonLikeCheck");
+        }
+    }
+
     private void agregarCarrito() throws PedidoException {
         TipoTorta tipoTorta = cbTipoTorta.getValue();
         SaborBizcocho saborBizcocho = cbSaborBizcocho.getValue();
@@ -149,10 +183,10 @@ public class MenuDisenioController {
 
             Pedido pedido = new Pedido();
             pedido.setCliente(cliente);
+            pedido.setFechaEmision(String.valueOf(LocalDate.now()));
             DetallePedido detallePedido = new DetallePedido(pastelComprar, pedido);
             pastelComprar.setPedido(pedido);
             pedido.getListaDetallesPedido().add(detallePedido);
-
             cliente.setRespaldoPastel(null);
             modelFactoryController.iniciarSalvarDatosPrueba();
 

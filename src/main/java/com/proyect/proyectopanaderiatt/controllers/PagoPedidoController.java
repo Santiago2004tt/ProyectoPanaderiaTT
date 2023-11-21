@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class PagoPedidoController {
@@ -106,11 +107,19 @@ public class PagoPedidoController {
         Pago pago = new Pago(monto, EstadoPago.COMPLETADO, numeroTarjeta, fechaVencimiento, codigoSeguridad, nombreBanco, metodoAutorizacion, cliente, pedido);
 
         try {
-            pedido.setId(String.valueOf(panaderia.getListaPedidos().size() + 1));
+            String id = String.valueOf(panaderia.getListaPedidos().size() + 1);
+            pedido.setId(id);
+            pedido.setFechaEmision(String.valueOf(LocalDate.now()));
             panaderia.crearPedido(pedido);
             cliente.getListaPedidos().add(pedido);
             pedido.setPago(pago);
             cliente.setCarrito(null);
+
+            List<DetallePedido> detallePedidos = pedido.getListaDetallesPedido();
+            for (int i = 0; i < detallePedidos.size(); i++) {
+                DetallePedido detallePedido = detallePedidos.get(i);
+                detallePedido.setId(id + "#" + (i + 1));
+            }
 
             String mensaje = BodyEmailUtil.emailPedido(cliente.getNombre() + " " + cliente.getApellido(), generarMensajeEmail());
 

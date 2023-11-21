@@ -152,6 +152,10 @@ public class MenuDisenioController {
             DetallePedido detallePedido = new DetallePedido(pastelComprar, pedido);
             pastelComprar.setPedido(pedido);
             pedido.getListaDetallesPedido().add(detallePedido);
+
+            cliente.setRespaldoPastel(null);
+            modelFactoryController.iniciarSalvarDatosPrueba();
+
             application.mostrarFactura(cliente, pedido);
         } else {
             MensajeUtil.mensajeAlerta("Alerta", "Faltan datos por rellenar");
@@ -208,6 +212,7 @@ public class MenuDisenioController {
     @FXML
     void regresarAction(ActionEvent event) {
         cliente.setRespaldoPastel(null);
+        modelFactoryController.iniciarSalvarDatosPrueba();
         application.mostrarCatalogo(cliente);
     }
 

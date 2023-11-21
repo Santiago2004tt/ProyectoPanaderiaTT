@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -122,22 +123,27 @@ public class CatalogoController {
 
     private ArrayList<VBox> inicializarPasteles() {
         ArrayList<VBox> vBoxes = new ArrayList<>();
-        int i = 0;
         for (Pastel pastel : getPastelesData()) {
             VBox contenedor = new VBox();
             contenedor.setAlignment(Pos.CENTER);
             contenedor.setStyle("-fx-background-color: lightblue");
-            Image image = new Image(pastel.getImagen());
-            ImageView imageView = new ImageView(image);
             contenedor.setOnMouseClicked(x -> application.mostrarMenuDisenio(cliente, pastel));
             contenedor.setCursor(Cursor.HAND);
+
+            Image image = new Image(pastel.getImagen());
+            ImageView imageView = new ImageView(image);
             imageView.setFitHeight(150);
             imageView.setFitWidth(150);
+
+            Text text = new Text(pastel.getDescripcion());
+            text.setWrappingWidth(150);
+            text.setTextAlignment(TextAlignment.CENTER);
+
             contenedor.getChildren().add(imageView);
-            contenedor.getChildren().add(new Text(++i + ""));
-            contenedor.getChildren().add(new Text(pastel.getDescripcion()));
+            contenedor.getChildren().add(text);
             vBoxes.add(contenedor);
         }
+
         return vBoxes;
     }
 
@@ -154,6 +160,7 @@ public class CatalogoController {
                         application.mostrarMenuDisenio(cliente, cliente.getRespaldoPastel());
                     } else {
                         cliente.setRespaldoPastel(null);
+                        modelFactoryController.iniciarSalvarDatosPrueba();
                     }
                 }
             }

@@ -1,5 +1,10 @@
 package com.proyect.proyectopanaderiatt.util;
 
+import com.proyect.proyectopanaderiatt.model.Forma;
+import com.proyect.proyectopanaderiatt.model.SaborBizcocho;
+import com.proyect.proyectopanaderiatt.model.SaborRelleno;
+import com.proyect.proyectopanaderiatt.model.TipoTorta;
+
 public class BodyEmailUtil {
 
     public static String creacionCuenta(String destinatario, String remitente) {
@@ -204,8 +209,11 @@ public class BodyEmailUtil {
                                     <tr>
                                         <td style="text-align: center;">
                                             <p style="font-size: 18px; color: #333;">Estimado/a %s,</p>
-                                            <p style="font-size: 16px; color: #555;">Hemos recibido su orden y se agrego a la lista de espera muchas gracias</p>
-                                            <p style="font-size: 23px; color: black;"> <span style="font-weight: bold;">%s<span></p>
+                                            <p style="font-size: 16px; color: #555;">Su pedido se ha generado correctamente</p>
+                                            <p style="font-size: 23px; color: black;"> <span style="font-weight: bold;">-------------------------------------------<span></p>
+                                              <br>
+                                              <p style="font-size: 23px; color: black;"> <span style="font-weight: bold;">%s<span></p>
+                                              <p style="font-size: 23px; color: black;"> <span style="font-weight: bold;"><span></p>
                                             <p style="font-size: 16px; color: #555;">Atentamente,</p>
                                             <p style="font-size: 18px; color: #333;">Panaderia TT</p>
                                         </td>
@@ -219,5 +227,23 @@ public class BodyEmailUtil {
                 """,
                 nombreUsuario,
                 mensaje);
+    }
+
+    public static String pastel(int numeroPastel, TipoTorta tipoTorta, SaborBizcocho saborBizcocho, SaborRelleno saborRelleno, Forma forma) {
+        return String.format("""
+                <p style="font-size: 23px; color: black;"> Pastel %s</p>
+                <br>
+                
+                <p style="font-size: 18px; color: black;"> Tipo torta: %s</p>
+                <p style="font-size: 18px; color: black;"> Sabor del Bizcocho  : %s</p>
+                <p style="font-size: 18px; color: black;"> Sabor del relleno: %s</p>
+                <p style="font-size: 18px; color: black;"> Forma del pastel: %s</p>
+                <p style="font-size: 18px; color: black;"> -------------------------------------------------------------------</p>
+                """,
+                numeroPastel,
+                tipoTorta,
+                saborBizcocho,
+                saborRelleno,
+                forma);
     }
 }

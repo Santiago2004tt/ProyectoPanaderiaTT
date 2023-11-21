@@ -70,4 +70,10 @@ public class FavoritosController {
         Image image = new Image(pastelSeleccionado.getImagen());
         iviImagen.setImage(image);
     }
+
+    @FXML
+    void initialize() {
+        modelFactoryController = ModelFactoryController.getInstance();
+        inicializarTabla();
+    }
 }

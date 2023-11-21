@@ -16,6 +16,7 @@ import java.io.IOException;
 public class Application extends javafx.application.Application {
 
     Stage stage;
+
     @Override
     public void start(Stage stage) {
         this.stage = stage;
@@ -43,7 +44,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarRegistroCliente(Cliente cliente){
+    public void mostrarRegistroCliente(Cliente cliente) {
         try {
             stage.close();
             stage = new Stage();
@@ -60,7 +61,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarCrearCuenta(Cliente cliente){
+    public void mostrarCrearCuenta(Cliente cliente) {
         try {
             stage.close();
             stage = new Stage();
@@ -77,7 +78,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarPerfil(Cliente cliente){
+    public void mostrarPerfil(Cliente cliente) {
         try {
             stage.close();
             stage = new Stage();
@@ -93,7 +94,8 @@ public class Application extends javafx.application.Application {
             throw new RuntimeException(e);
         }
     }
-    public void mostrarMenuDisenio(Cliente cliente, Pastel pastel){
+
+    public void mostrarMenuDisenio(Cliente cliente, Pastel pastel) {
         try {
             stage.close();
             stage = new Stage();
@@ -110,7 +112,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarRecuperarContrasenia(){
+    public void mostrarRecuperarContrasenia() {
         try {
             stage.close();
             stage = new Stage();
@@ -127,7 +129,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarCatalogo(Cliente cliente){
+    public void mostrarCatalogo(Cliente cliente) {
         try {
             stage.close();
             stage = new Stage();
@@ -144,7 +146,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarCatalogoConVerificacion(Cliente cliente){
+    public void mostrarCatalogoConVerificacion(Cliente cliente) {
         try {
             stage.close();
             stage = new Stage();
@@ -162,7 +164,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarFactura(Cliente cliente, Pedido pedido){
+    public void mostrarFactura(Cliente cliente, Pedido pedido) {
         try {
             stage.close();
             stage = new Stage();
@@ -179,7 +181,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarCarrito(Cliente cliente){
+    public void mostrarCarrito(Cliente cliente) {
         try {
             stage.close();
             stage = new Stage();
@@ -196,7 +198,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarDireccionEnvio(Cliente cliente, Pedido pedido){
+    public void mostrarDireccionEnvio(Cliente cliente, Pedido pedido) {
         try {
             stage.close();
             stage = new Stage();
@@ -213,7 +215,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarPagoPedido(Cliente cliente, Pedido pedido){
+    public void mostrarPagoPedido(Cliente cliente, Pedido pedido) {
         try {
             stage.close();
             stage = new Stage();
@@ -230,8 +232,8 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarHistorial(Cliente cliente){
-      try {
+    public void mostrarHistorial(Cliente cliente) {
+        try {
             stage.close();
             stage = new Stage();
             FXMLLoader loader = new FXMLLoader();
@@ -246,8 +248,8 @@ public class Application extends javafx.application.Application {
             throw new RuntimeException(e);
         }
     }
-  
-    public void mostrarPqrs(Cliente cliente){
+
+    public void mostrarPqrs(Cliente cliente) {
         try {
             stage.close();
             stage = new Stage();
@@ -263,8 +265,8 @@ public class Application extends javafx.application.Application {
             throw new RuntimeException(e);
         }
     }
-  
-    public void mostrarHistorialPqrs(Cliente cliente){
+
+    public void mostrarHistorialPqrs(Cliente cliente) {
         try {
             stage.close();
             stage = new Stage();
@@ -280,9 +282,13 @@ public class Application extends javafx.application.Application {
             throw new RuntimeException(e);
         }
     }
-  
-  
-    public void mostrarDetallePedido(Cliente cliente, Pedido pedido){
+
+
+    public void mostrarDetallePedido(Cliente cliente, Pedido pedido) {
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Application.class.getResource("/views/detalle-pedido.fxml"));
             AnchorPane rootLayout = loader.load();
             DetallePedidoController controller = loader.getController();//Obtenemos el controlador
@@ -295,7 +301,7 @@ public class Application extends javafx.application.Application {
         }
     }
 
-    public void mostrarDetallePqrs(Cliente cliente, PQRS pqrs){
+    public void mostrarDetallePqrs(Cliente cliente, PQRS pqrs) {
         try {
             stage.close();
             stage = new Stage();
@@ -311,8 +317,12 @@ public class Application extends javafx.application.Application {
             throw new RuntimeException(e);
         }
     }
-    
+
     public void mostrarFavoritos(Cliente cliente) {
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Application.class.getResource("/views/favoritos.fxml"));
             AnchorPane rootLayout = loader.load();
             FavoritosController controller = loader.getController();//Obtenemos el controlador

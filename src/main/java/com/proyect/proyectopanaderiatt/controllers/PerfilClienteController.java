@@ -14,6 +14,7 @@ public class PerfilClienteController {
     Application application;
     ModelFactoryController modelFactoryController;
     Cliente cliente;
+
     @FXML
     private Button btnCrearPedido;
 
@@ -22,6 +23,9 @@ public class PerfilClienteController {
 
     @FXML
     private Button btnHistorialPedidos;
+
+    @FXML
+    private Button btnHistorialPqrs;
 
     @FXML
     private Button btnRegresar;
@@ -57,6 +61,11 @@ public class PerfilClienteController {
     @FXML
     void historialPedidosAction(ActionEvent event) {
         application.mostrarHistorial(cliente);
+    }
+
+    @FXML
+    void historialPqrsAction(ActionEvent event) {
+        application.mostrarHistorialPqrs(cliente);
     }
 
     @FXML

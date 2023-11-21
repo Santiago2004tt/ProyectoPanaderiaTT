@@ -36,10 +36,11 @@
             <Label id="text" fx:id="lblCedula" text="Cedula" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button id="button" fx:id="btnCrearPedido" layoutX="235.0" layoutY="273.0" mnemonicParsing="false" onAction="#crearPedidoAction" text="Crear Pedido" />
+      <Button id="button" fx:id="btnCrearPedido" layoutX="235.0" layoutY="225.0" mnemonicParsing="false" onAction="#crearPedidoAction" text="Crear Pedido" />
       <Button id="buttonBack" fx:id="btnRegresar" layoutX="3.0" layoutY="7.0" mnemonicParsing="false" onAction="#regresarAction" text="Regresar" />
-      <Button id="button" fx:id="btnHistorialPedidos" layoutX="235.0" layoutY="327.0" mnemonicParsing="false" onAction="#historialPedidosAction" text="Historial Pedidos" />
+      <Button id="button" fx:id="btnHistorialPedidos" layoutX="235.0" layoutY="279.0" mnemonicParsing="false" onAction="#historialPedidosAction" text="Historial Pedidos" />
       <ImageView fx:id="ivFotoPerfil" fitHeight="150.0" fitWidth="200.0" layoutX="359.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+      <Button id="button" fx:id="btnHistorialPqrs" layoutX="235.0" layoutY="331.0" mnemonicParsing="false" onAction="#historialPqrsAction" text="Historial PQRS" />
       <Button id="button" fx:id="btnFavoritos" layoutX="236.0" layoutY="213.0" mnemonicParsing="false" onAction="#favoritos" text="Favoritos" />
    </children>
 </AnchorPane>

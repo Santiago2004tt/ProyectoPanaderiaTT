@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyect.proyectopanaderiatt.controllers.PqrsController">
+   <children>
+      <Label id="title" layoutX="270.0" layoutY="14.0" text="PQRS" />
+      <ComboBox fx:id="cbTipoPeticion" layoutX="257.0" layoutY="253.0" prefHeight="26.0" prefWidth="151.0" />
+      <Button id="buttonBack" fx:id="btnRegresar" layoutX="4.0" layoutY="3.0" mnemonicParsing="false" onAction="#regresarAction" text="Regresar" />
+      <Label id="text" layoutX="258.0" layoutY="300.0" text="Asunto:" />
+      <TextArea id="text" fx:id="taDescripcion" layoutX="47.0" layoutY="221.0" prefHeight="154.0" prefWidth="177.0" wrapText="true" />
+      <Button id="buttonNormal" fx:id="btnEnviar" layoutX="467.0" layoutY="351.0" mnemonicParsing="false" onAction="#enviarAction" prefHeight="34.0" prefWidth="76.0" text="Enviar" />
+      <Label id="text" layoutX="47.0" layoutY="200.0" text="Descripción:" />
+      <Pane id="panelTotal" layoutX="24.0" layoutY="47.0" prefHeight="138.0" prefWidth="552.0">
+         <children>
+            <Label id="text" fx:id="lblNombre" layoutX="89.0" layoutY="28.0" text="Nombre: " />
+            <Label id="text" fx:id="lblTelefono" layoutX="88.0" layoutY="61.0" text="Telefono: " />
+            <Label id="text" fx:id="lblEmail" layoutX="88.0" layoutY="99.0" text="Email: " />
+            <Label id="subTitle" text="Usuario" />
+         </children>
+      </Pane>
+      <TextField fx:id="tfAsunto" layoutX="257.0" layoutY="323.0" />
+      <Label id="text" layoutX="254.0" layoutY="231.0" text="Tipo solicitud:" />
+   </children>
+</AnchorPane>

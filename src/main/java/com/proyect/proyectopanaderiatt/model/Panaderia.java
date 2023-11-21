@@ -1,9 +1,6 @@
 package com.proyect.proyectopanaderiatt.model;
 
-import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
-import com.proyect.proyectopanaderiatt.Exceptions.CuentaException;
-import com.proyect.proyectopanaderiatt.Exceptions.EmpleadoException;
-import com.proyect.proyectopanaderiatt.Exceptions.PedidoException;
+import com.proyect.proyectopanaderiatt.Exceptions.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +25,7 @@ public class Panaderia implements Serializable {
     HashMap<SaborBizcocho, Double> precioSaborBizcocho;
     HashMap<SaborRelleno, Double> precioSaborRelleno;
     HashMap<Tamano, Double> precioPisos;
+    ArrayList<PQRS> listaPQRS;
     private static final long serialVersioUID = 1L;
 
     public Panaderia(String id, String ubicacion, String horario, String correoElectronico, double calificacion, String nombre) {
@@ -45,6 +43,7 @@ public class Panaderia implements Serializable {
         precioSaborBizcocho = new HashMap<>();
         precioSaborRelleno = new HashMap<>();
         precioPisos = new HashMap<>();
+        listaPQRS = new ArrayList<>();
         llenarPrecios();
     }
 
@@ -57,6 +56,7 @@ public class Panaderia implements Serializable {
         precioSaborBizcocho = new HashMap<>();
         precioSaborRelleno = new HashMap<>();
         precioPisos = new HashMap<>();
+        listaPQRS = new ArrayList<>();
         llenarPrecios();
     }
 
@@ -171,6 +171,74 @@ public class Panaderia implements Serializable {
     public void setPrecioPisos(HashMap<Tamano, Double> precioPisos) {
         this.precioPisos = precioPisos;
     }
+    //Crud PQRS
+
+    /**
+     * Crea una pqrs
+     * @param tipoPqrs
+     * @param asunto
+     * @param descripcion
+     * @param fechaCreacion
+     * @param cliente
+     * @return
+     */
+    public PQRS crearPqrs(TIPO_PQRS tipoPqrs, String asunto, String descripcion, String fechaCreacion, Cliente cliente) {
+        String id = String.valueOf(listaPQRS.size());
+        PQRS pqrs = new PQRS();
+
+        pqrs.setId(id);
+        pqrs.setTipoPQRS(tipoPqrs);
+        pqrs.setAsunto(asunto);
+        pqrs.setDescripcion(descripcion);
+        pqrs.setFechaCreacion(fechaCreacion);
+        pqrs.setEstadoPqrs(ESTADO_PQRS.EN_PROCESO);
+
+        cliente.getListaPQRS().add(pqrs);
+        listaPQRS.add(pqrs);
+        return pqrs;
+    }
+
+    /**
+     * Busca una pqrs en la lista segun el id
+     * @param id
+     * @return
+     * @throws PqrsException
+     */
+    public PQRS buscarPqrs(String id) throws PqrsException {
+        for (PQRS pqrs : listaPQRS) {
+            if (pqrs.getId().equals(id)) {
+                return pqrs;
+            }
+        }
+        throw new PqrsException("La solicitud no existe");
+    }
+
+    /**
+     * Actualiza el estado y la fecha de resolucion
+     * @param id
+     * @param estadoPqrs
+     * @param fechaResolucion
+     * @throws PqrsException
+     */
+    public void actualizarPqrs(String id, ESTADO_PQRS estadoPqrs, String fechaResolucion) throws PqrsException {
+        PQRS pqrs = buscarPqrs(id);
+        pqrs.setEstadoPqrs(estadoPqrs);
+        pqrs.setFechaResolucion(fechaResolucion);
+    }
+
+    /**
+     * Elimina una pqrs segun la id
+     * @param id
+     * @return
+     * @throws PqrsException
+     */
+    public PQRS eliminarPqrs(String id) throws PqrsException {
+        PQRS pqrs = buscarPqrs(id);
+        listaPQRS.remove(pqrs);
+        pqrs.getCliente().getListaPQRS().remove(pqrs);
+        return pqrs;
+    }
+
     //Crud de cliente
 
     /**

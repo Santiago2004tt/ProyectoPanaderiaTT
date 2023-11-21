@@ -66,10 +66,10 @@ public class DetallePedidoController {
 
         tblDetallesPedidos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)->{
             detallePedidoSeleccionado= newSelection;
+            if(detallePedidoSeleccionado!=null){
+                mostrarInformacion(detallePedidoSeleccionado.getPastel());
+            }
         });
-        if(detallePedidoSeleccionado!=null){
-            mostrarInformacion(detallePedidoSeleccionado.getPastel());
-        }
     }
 
     private void mostrarInformacion(Pastel pastel) {

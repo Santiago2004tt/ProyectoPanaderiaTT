@@ -84,14 +84,6 @@ public class Cliente extends Persona implements Serializable {
         this.listaFavoritos = listaFavoritos;
     }
 
-    public ArrayList<PQRS> getListaPQRS() {
-        return listaPQRS;
-    }
-
-    public void setListaPQRS(ArrayList<PQRS> listaPQRS) {
-        this.listaPQRS = listaPQRS;
-    }
-
     public Pedido getCarrito() {
         return carrito;
     }

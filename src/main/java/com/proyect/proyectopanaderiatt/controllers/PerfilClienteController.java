@@ -44,7 +44,8 @@ public class PerfilClienteController {
 
     @FXML
     private Label lblNombre;
-
+    @FXML
+    private Button btnFavoritos;
     @FXML
     private Label lblTelefono;
 
@@ -52,10 +53,14 @@ public class PerfilClienteController {
     void crearPedidoAction(ActionEvent event) {
         application.mostrarMenuDisenio(cliente, null);
     }
+    @FXML
+    void favoritos(ActionEvent event) {
+        application.mostrarFavoritos(cliente);
+    }
 
     @FXML
     void historialPedidosAction(ActionEvent event) {
-
+        application.mostrarHistorial(cliente);
     }
 
     @FXML

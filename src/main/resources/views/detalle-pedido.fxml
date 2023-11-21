@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proyect.proyectopanaderiatt.controllers.DetallePedidoController">
+   <children>
+      <Button fx:id="btnSalir" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#salir" prefHeight="25.0" prefWidth="44.0" text="Salir" />
+      <TableView fx:id="tblDetallesPedidos" layoutX="317.0" layoutY="46.0" prefHeight="276.0" prefWidth="242.0">
+        <columns>
+          <TableColumn fx:id="colId" prefWidth="98.0" text="id" />
+          <TableColumn fx:id="colSubTotal" prefWidth="143.0" text="subTotal" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="58.0" layoutY="46.0" prefHeight="138.0" prefWidth="171.0" style="-fx-background-color: #9b9b9b;">
+         <children>
+            <ImageView fx:id="ivImagen" fitHeight="165.0" fitWidth="199.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="lblTipoPastel" layoutX="44.0" layoutY="243.0" prefHeight="17.0" prefWidth="213.0" text="Tipo pastel" />
+      <Label fx:id="lblSaborRelleno" layoutX="44.0" layoutY="272.0" prefHeight="17.0" prefWidth="213.0" text="Sabor relleno" />
+      <Label fx:id="lblSaborBizcocho" layoutX="44.0" layoutY="305.0" prefHeight="17.0" prefWidth="213.0" text="Sabor bizcocho" />
+   </children>
+</AnchorPane>

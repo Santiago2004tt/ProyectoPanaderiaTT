@@ -98,9 +98,10 @@ public class ModelFactoryController {
         panaderia.setId("pntt01");
         panaderia.setUbicacion("Pereira");
         panaderia.setHorario("Lun-mar de 8:00 am a 9:00 pm");
+        Pastel pastel = new Pastel();
     }
 
-    private void iniciarSalvarDatosPrueba() {
+    void iniciarSalvarDatosPrueba() {
 
         Persistencia.guardarRecursoBinario(panaderia);
 

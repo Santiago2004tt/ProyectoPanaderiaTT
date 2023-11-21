@@ -2,6 +2,7 @@ package com.proyect.proyectopanaderiatt.Application;
 
 import com.proyect.proyectopanaderiatt.controllers.*;
 import com.proyect.proyectopanaderiatt.model.Cliente;
+import com.proyect.proyectopanaderiatt.model.PQRS;
 import com.proyect.proyectopanaderiatt.model.Pastel;
 import com.proyect.proyectopanaderiatt.model.Pedido;
 import javafx.fxml.FXMLLoader;
@@ -220,6 +221,57 @@ public class Application extends javafx.application.Application {
             AnchorPane rootLayout = loader.load();
             PagoPedidoController controller = loader.getController();//Obtenemos el controlador
             controller.setApplication(this, cliente, pedido);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarPqrs(Cliente cliente){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/pqrs.fxml"));
+            AnchorPane rootLayout = loader.load();
+            PqrsController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarHistorialPqrs(Cliente cliente){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/historial-pqrs.fxml"));
+            AnchorPane rootLayout = loader.load();
+            HistorialPqrsController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente);
+            Scene scene = new Scene(rootLayout);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarDetallePqrs(Cliente cliente, PQRS pqrs){
+        try {
+            stage.close();
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Application.class.getResource("/views/detalle-pqrs.fxml"));
+            AnchorPane rootLayout = loader.load();
+            DetallePqrsController controller = loader.getController();//Obtenemos el controlador
+            controller.setApplication(this, cliente, pqrs);
             Scene scene = new Scene(rootLayout);
             stage.setScene(scene);
             stage.show();

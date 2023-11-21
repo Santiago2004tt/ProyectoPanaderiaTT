@@ -1,22 +1,26 @@
 package com.proyect.proyectopanaderiatt.model;
 
-public class PQRS {
+import java.io.Serializable;
+
+public class PQRS implements Serializable {
 
     private String id;
     private String fechaCreacion;
     private String fechaResolucion;
     private ESTADO_PQRS estadoPqrs;
+    private String asunto;
     private String descripcion;
-    private TipoPQRS tipoPQRS;
+    private TIPO_PQRS TIPOPQRS;
     private Cliente cliente;
 
-    public PQRS(String id, String fechaCreacion, String fechaResolucion, ESTADO_PQRS estadoPqrs, String descripcion, TipoPQRS tipoPQRS, Cliente cliente) {
+    public PQRS(String id, String fechaCreacion, String fechaResolucion, ESTADO_PQRS estadoPqrs, String asunto, String descripcion, TIPO_PQRS TIPOPQRS, Cliente cliente) {
         this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.fechaResolucion = fechaResolucion;
         this.estadoPqrs = estadoPqrs;
+        this.asunto = asunto;
         this.descripcion = descripcion;
-        this.tipoPQRS = tipoPQRS;
+        this.TIPOPQRS = TIPOPQRS;
         this.cliente = cliente;
     }
 
@@ -55,6 +59,14 @@ public class PQRS {
         this.estadoPqrs = estadoPqrs;
     }
 
+    public String getAsunto() {
+        return asunto;
+    }
+
+    public void setAsunto(String asunto) {
+        this.asunto = asunto;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -63,12 +75,12 @@ public class PQRS {
         this.descripcion = descripcion;
     }
 
-    public TipoPQRS getTipoPQRS() {
-        return tipoPQRS;
+    public TIPO_PQRS getTipoPQRS() {
+        return TIPOPQRS;
     }
 
-    public void setTipoPQRS(TipoPQRS tipoPQRS) {
-        this.tipoPQRS = tipoPQRS;
+    public void setTipoPQRS(TIPO_PQRS TIPOPQRS) {
+        this.TIPOPQRS = TIPOPQRS;
     }
 
     public Cliente getCliente() {

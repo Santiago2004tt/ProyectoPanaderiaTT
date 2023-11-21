@@ -87,6 +87,14 @@ public class Cliente extends Persona implements Serializable {
         this.respaldoPastel = respaldoPastel;
     }
 
+    public ArrayList<PQRS> getListaPQRS() {
+        return listaPQRS;
+    }
+
+    public void setListaPQRS(ArrayList<PQRS> listaPQRS) {
+        this.listaPQRS = listaPQRS;
+    }
+
     /**
      * metodo que verifica si existe el usuario o no
      * @param usuario

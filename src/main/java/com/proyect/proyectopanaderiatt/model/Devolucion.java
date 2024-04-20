@@ -1,6 +1,8 @@
 package com.proyect.proyectopanaderiatt.model;
 
-public class Devolucion {
+import java.io.Serializable;
+
+public class Devolucion implements Serializable {
 
     private String id;
     private String fechaDevolucion;

@@ -22,5 +22,6 @@
             <ImageView fx:id="iviImagen" fitHeight="200.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
+      <Button fx:id="btnEliminar" layoutX="83.0" layoutY="337.0" mnemonicParsing="false" onAction="#eliminarFavoritos" text="Eliminar de favoritos" />
    </children>
 </AnchorPane>

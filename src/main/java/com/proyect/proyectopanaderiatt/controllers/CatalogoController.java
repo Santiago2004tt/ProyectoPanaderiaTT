@@ -1,10 +1,8 @@
 package com.proyect.proyectopanaderiatt.controllers;
 
 import com.proyect.proyectopanaderiatt.Application.Application;
-import com.proyect.proyectopanaderiatt.Exceptions.ClienteException;
 import com.proyect.proyectopanaderiatt.model.Cliente;
 import com.proyect.proyectopanaderiatt.model.Pastel;
-import com.proyect.proyectopanaderiatt.util.MensajeUtil;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -26,7 +24,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class CatalogoController {
 
@@ -58,6 +55,11 @@ public class CatalogoController {
     @FXML
     void carritoAction(ActionEvent event) {
         application.mostrarCarrito(cliente);
+    }
+
+    @FXML
+    void devolucionesAction() {
+        application.mostrarCrearDevolucion(cliente);
     }
 
     @FXML
@@ -141,7 +143,7 @@ public class CatalogoController {
             VBox contenedor = new VBox();
             contenedor.setAlignment(Pos.CENTER);
             contenedor.setStyle("-fx-background-color: lightblue");
-            contenedor.setOnMouseClicked(x -> pedirFavorito(pastel));
+            contenedor.setOnMouseClicked(x -> application.mostrarMenuDisenio(cliente, pastel));
             contenedor.setCursor(Cursor.HAND);
 
             Image image = new Image(pastel.getImagen());
@@ -159,35 +161,6 @@ public class CatalogoController {
         }
 
         return vBoxes;
-    }
-
-    private void pedirFavorito(Pastel pastel) {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Favorito");
-        alert.setHeaderText("Quieres añadir este pastel a favoritos??");
-        alert.setContentText("Selecciona 'OK' para Sí o 'Cancelar' para No.");
-
-        // Configurar los botones personalizados
-        ButtonType buttonTypeSi = new ButtonType("OK");
-        ButtonType buttonTypeNo = new ButtonType("Cancelar");
-
-        alert.getButtonTypes().setAll(buttonTypeSi, buttonTypeNo);
-
-        // Mostrar el cuadro de diálogo y esperar a que el usuario seleccione una opción
-        Optional<ButtonType> resultado = alert.showAndWait();
-
-        // Determinar el resultado basado en la opción seleccionada por el usuario
-        boolean res = resultado.isPresent() && resultado.get() == buttonTypeSi;
-
-        if(res == true){
-            try {
-                cliente.agregarFavorito(pastel);
-            }catch (ClienteException e){
-                MensajeUtil.mensajeAlerta("Error", e.getMessage());
-            }
-        }
-        application.mostrarMenuDisenio(cliente, pastel);
     }
 
     public void verificarRespaldo() {
